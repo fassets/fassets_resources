@@ -1,8 +1,9 @@
-.bundle
-db/*.sqlite3
+.bundle/
 log/*.log
-tmp/
-public/uploads
+pkg/
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/
 *.swp
 *~
 backup

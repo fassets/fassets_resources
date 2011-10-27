@@ -1,28 +1,14 @@
-source :rubygems
+source "http://rubygems.org"
 
-gem "rails", ">= 3.1"
-gem "haml", ">= 3.1.2"
-gem "paperclip"
-gem "sqlite3"
-gem "devise"
-gem "pandoc-ruby"
-gem "acts_as_tree_rails3"
+# Declare your gem's dependencies in fassets_core.gemspec.
+# Bundler will treat runtime dependencies like base dependencies, and
+# development dependencies will be added by default to the :development group.
+gemspec
 
-gem "jquery-rails"
-gem "fancybox-rails", "~> 0.1.4"
+# Declare any dependencies that are still in development here instead of in
+# your gemspec. These might include edge Rails or gems from your path or
+# Git. Remember to move these dependencies to your gemspec before releasing
+# your gem to rubygems.org.
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'uglifier'
-end
-
-group :development, :test do
-  gem "therubyracer"
-  gem "rspec-rails", ">= 2.0.0"
-  gem "rcov"
-  gem "cucumber-rails", ">= 0.3.2"
-  gem "database_cleaner", ">= 0.5.0"
-  gem "webrat"
-end
+# To use debugger
+# gem 'ruby-debug'

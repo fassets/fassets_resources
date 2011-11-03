@@ -10,9 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 20111103195213) do
 
-  create_table "assets", :force => true do |t|
+  create_table "fassets_core_assets", :force => true do |t|
     t.string   "name"
     t.boolean  "public"
     t.integer  "content_id"
@@ -23,18 +23,18 @@ ActiveRecord::Schema.define(:version => 17) do
     t.datetime "updated_at"
   end
 
-  create_table "catalogs", :force => true do |t|
+  create_table "fassets_core_catalogs", :force => true do |t|
     t.string "title"
     t.string "permalink"
     t.text   "info"
   end
 
-  create_table "classifications", :force => true do |t|
+  create_table "fassets_core_classifications", :force => true do |t|
     t.integer "catalog_id"
     t.integer "asset_id"
   end
 
-  create_table "facets", :force => true do |t|
+  create_table "fassets_core_facets", :force => true do |t|
     t.string  "caption"
     t.string  "color"
     t.string  "order"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 17) do
     t.string  "label_order"
   end
 
-  create_table "file_assets", :force => true do |t|
+  create_table "fassets_core_file_assets", :force => true do |t|
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
@@ -51,16 +51,28 @@ ActiveRecord::Schema.define(:version => 17) do
     t.datetime "file_updated_at"
   end
 
-  create_table "labelings", :force => true do |t|
+  create_table "fassets_core_labelings", :force => true do |t|
     t.integer "classification_id"
     t.integer "label_id"
   end
 
-  create_table "labels", :force => true do |t|
+  create_table "fassets_core_labels", :force => true do |t|
     t.string  "caption"
     t.integer "facet_id"
     t.integer "position"
     t.integer "value"
+  end
+
+  create_table "fassets_core_tray_positions", :force => true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.integer "asset_id"
+    t.string  "clipboard_type"
+    t.integer "clipboard_id"
+  end
+
+  create_table "fassets_core_urls", :force => true do |t|
+    t.string "url"
   end
 
   create_table "sessions", :force => true do |t|
@@ -72,18 +84,6 @@ ActiveRecord::Schema.define(:version => 17) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "tray_positions", :force => true do |t|
-    t.integer "user_id"
-    t.integer "position"
-    t.integer "asset_id"
-    t.string  "clipboard_type"
-    t.integer "clipboard_id"
-  end
-
-  create_table "urls", :force => true do |t|
-    t.string "url"
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

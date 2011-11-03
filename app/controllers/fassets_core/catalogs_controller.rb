@@ -1,3 +1,4 @@
+module FassetsCore
 class CatalogsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
 
@@ -67,4 +68,5 @@ protected
   def find_catalog
     @catalog = Catalog.find(params[:id])
   end
+end
 end

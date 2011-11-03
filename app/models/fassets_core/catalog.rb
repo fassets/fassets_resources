@@ -1,3 +1,4 @@
+module FassetsCore
 class Catalog < ActiveRecord::Base
   has_many :facets, :include => :labels, :dependent => :destroy
   has_many :classifications, :dependent => :destroy
@@ -13,3 +14,5 @@ class Catalog < ActiveRecord::Base
   #  "#{id}-#{permalink}"
   #end
 end
+end
+

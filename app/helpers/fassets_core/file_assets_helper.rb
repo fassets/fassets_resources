@@ -1,7 +1,8 @@
-module FileAssetsHelper
-  
-  def video_player(content)
-    javascript_tag %Q<
+module FassetsCore
+  module FileAssetsHelper
+
+    def video_player(content)
+      javascript_tag %Q<
       flowplayer('player_#{content.id}', '/swf/flowplayer.swf', {
         clip: {
           autoPlay: false
@@ -17,8 +18,10 @@ module FileAssetsHelper
                 buttonColor: '#222222'
             }
         }
-        
+
       });
-    >
+      >
+    end
   end
 end
+

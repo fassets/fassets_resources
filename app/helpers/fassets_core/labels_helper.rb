@@ -1,2 +1,5 @@
-module LabelsHelper
+module FassetsCore
+  module LabelsHelper
+  end
 end
+

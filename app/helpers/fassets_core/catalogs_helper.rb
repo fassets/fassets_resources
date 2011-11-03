@@ -1,2 +1,5 @@
-module CatalogsHelper
+module FassetsCore
+  module CatalogsHelper
+  end
 end
+

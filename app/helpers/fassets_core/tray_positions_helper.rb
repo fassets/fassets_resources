@@ -1,2 +1,5 @@
-module TrayPositionsHelper
+module FassetsCore
+  module TrayPositionsHelper
+  end
 end
+

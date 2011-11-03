@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  mount FassetsCore::Engine => "/fassets-core"
+  mount FassetsCore::Engine => "/core"
 
-  root :to => "catalogs#index"
+  root :to => "FassetsCore::Catalogs#index"
 end

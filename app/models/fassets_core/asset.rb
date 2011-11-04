@@ -19,11 +19,11 @@ module FassetsCore
       1
     end
     def self.filter(filter)
-      options = {:select => "assets.*", :order => "name"}
+      options = {:select => "fassets_core_assets.*", :order => "name"}
       unless filter.empty?
-        options[:joins] = "LEFT OUTER JOIN labelings ON labelings.classification_id=classifications.id"
+        options[:joins] = "LEFT OUTER JOIN fassets_core_labelings ON fassets_core_labelings.classification_id=fassets_core_classifications.id"
         options[:conditions] = filter.to_condition
-        options[:group] = "assets.id HAVING COUNT(label_id)=#{filter.size}"
+        options[:group] = "fassets_core_assets.id HAVING COUNT(label_id)=#{filter.size}"
       end
       all options
     end

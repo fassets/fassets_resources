@@ -5,7 +5,7 @@ module FassetsCore
 
     def new
       @content = self.content_model.new
-      render :template => 'assets/new'
+      render :template => 'fassets_core/assets/new'
     end
     def create
       logger.debug content_params
@@ -17,14 +17,14 @@ module FassetsCore
         flash[:notice] = "Created new asset!"
         redirect_to url_for(@content) + "/edit"
       else
-        render :template => 'assets/new'
+        render :template => 'fassets_core/assets/new'
       end
     end
     def show
-      render :template => 'assets/show'
+      render :template => 'fassets_core/assets/show'
     end
     def edit
-      render :template => 'assets/edit'
+      render :template => 'fassets_core/assets/edit'
     end
     def update
       if @content.update_attributes(content_params) and @content.asset.update_attributes(params["asset"])
@@ -32,7 +32,7 @@ module FassetsCore
         redirect_to url_for(@content) + "/edit"
       else
         flash[:error] = "Could not update asset!"
-        render :template => 'assets/edit'
+        render :template => 'fassets_core/assets/edit'
       end
     end
     def destroy

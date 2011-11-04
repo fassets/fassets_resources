@@ -2,7 +2,7 @@
   .caption{:class => facet.color}
     =facet.caption
     -if user_signed_in?
-      =link_to image_tag("edit.png"), edit_catalog_facet_path(@catalog, facet)
+      =link_to image_tag("fassets_core/edit.png"), edit_catalog_facet_path(@catalog, facet)
   %ul{:class => "#{facet.color}_lite"}
     -facet.labels.each do |label|
       -if @counts[label.id] && !@filter.include?(label.id)

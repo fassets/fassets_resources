@@ -4,12 +4,12 @@
     =@catalog.title
     -if user_signed_in?
       %span.action
-        =link_to image_tag("edit.png"), edit_catalog_path(@catalog)
+        =link_to image_tag("fassets_core/edit.png"), edit_catalog_path(@catalog)
 #sidebar
   -if user_signed_in?
     %h2.facettitle Add Facet
-    =form_for [@catalog, Facet.new], :html => {:class => 'collapsable_facet'} do |f|
-      =render :partial => "/facets/form", :object => f
+    =form_for [@catalog, FassetsCore::Facet.new], :html => {:class => 'collapsable_facet'} do |f|
+      =render :partial => "fassets_core/facets/form", :object => f
       =submit_tag "Create"
   =render :partial => "facet", :collection => @catalog.facets  
 
@@ -22,8 +22,8 @@
       Filtered Assets
     #filter
       %ul
-        =render :partial => "filter_item", :collection => Label.in(@filter)    
+        =render :partial => "filter_item", :collection => FassetsCore::Label.in(@filter)
         %li{:style => "clear:both"}=link_to "clear filter", catalog_path(@catalog), :class => "icon remove"
   %ul#assets
-    =render :partial => "shared/asset", :collection => @assets, :locals => {:tp => nil}
+    =render :partial => "fassets_core/shared/asset", :collection => @assets, :locals => {:tp => nil}
 

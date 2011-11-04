@@ -9,8 +9,8 @@
     =button_to "Delete", [@catalog, @facet], :method => :delete, :onclick => "return confirm('Are you sure?')"
 #sidebar
   %h2.labeltitle New Label
-  =form_for [@catalog, @facet, Label.new], :html => {:class => "collapsable_label"} do |f|
-    =render :partial => "/labels/form", :object => f
+  =form_for [@catalog, @facet, FassetsCore::Label.new], :html => {:class => "collapsable_label"} do |f|
+    =render :partial => "fassets_core/labels/form", :object => f
     =submit_tag "Create"
 
   %h2.facetlabelstitle Labels
@@ -20,7 +20,7 @@
         =label.caption
         .content
           =form_for [@catalog, @facet, label] do |f|
-            =render :partial => "/labels/form", :object => f
+            =render :partial => "fassets_core/labels/form", :object => f
             =submit_tag "Save" 
 #main  
   =form_for [@catalog, @facet] do |f|

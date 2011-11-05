@@ -1,11 +1,11 @@
-- content_for :head
+- content_for :head do
   =stylesheet_link_tag 'fassets_core/application'
   =javascript_include_tag "fassets_core/application"
 
-- content_for :catalogs_selector
+- content_for :catalogs_selector do
   =collection_select :catalog, :id, FassetsCore::Catalog.all, :id, :title, options ={:prompt => "Catalogs ..."},  :onchange => "javascript:window.location= '/catalogs/' + this.value"
 
-- content_for :tray
+- content_for :tray do
   =form_tag(replace_user_tray_positions_path(current_user), :id => "tray", :method => :put) do
     %ul
       %li=link_to "New URL", new_url_path

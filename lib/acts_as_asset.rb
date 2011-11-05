@@ -6,7 +6,7 @@ module ActiveRecord
       end
       module ClassMethods
         def acts_as_asset
-          has_one :asset, :as => :content, :dependent => :destroy
+          has_one :asset, :as => :content, :dependent => :destroy, :class_name => "FassetsCore::Asset"
           accepts_nested_attributes_for :asset
           include ActiveRecord::Acts::Asset::InstanceMethods
         end

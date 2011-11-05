@@ -1,8 +1,8 @@
 %h2.classificationtitle New Classification
-=form_for Classification.new(:asset_id => @content.asset.id), :html=>{:class => 'collapsable_classification'} do |f|
+=form_for FassetsCore::Classification.new(:asset_id => @content.asset.id), :url => main_app.classifications_path, :html=>{:class => 'collapsable_classification'} do |f|
   %p
     %label{:for => 'catalog_id'} Catalog:
-    =select("classification", "catalog_id", Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
+    =select("classification", "catalog_id", FassetsCore::Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
   =f.hidden_field :asset_id
   =submit_tag "Create"    
 

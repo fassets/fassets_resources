@@ -3,7 +3,7 @@
 #sidebar
   -if user_signed_in?
     %h2.catalogtitle New Catalog
-    =form_for FassetsCore::Catalog.new, :html => {:class => "collapsable_catalog"} do |f|
+    =form_for FassetsCore::Catalog.new, :url => catalogs_path, :html => {:class => "collapsable_catalog"} do |f|
       =render :partial => "form", :object => f
       =submit_tag "Create"
   %ul.collection

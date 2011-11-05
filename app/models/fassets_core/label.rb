@@ -6,7 +6,7 @@ module FassetsCore
 
     validates_presence_of :caption  
     scope :in,  lambda {|ids|
-      {:conditions => ['fassets_core_labels.id IN (?)', ids], :include => :facet, :order => "facet_id"}
+      {:conditions => ['labels.id IN (?)', ids], :include => :facet, :order => "facet_id"}
     }
   end
 end

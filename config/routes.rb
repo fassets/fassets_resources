@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :catalogs do
-    resources :facets do
-      resources :labels do
+  resources :catalogs, :controller => 'FassetsCore::Catalogs' do
+    resources :facets, :controller => 'FassetsCore::Facets' do
+      resources :labels, :controller => 'FassetsCore::Labels' do
         collection do
           put :sort
         end
@@ -11,10 +11,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :classifications
+  resources :classifications, :controller => 'FassetsCore::Classifications'
 
   resources :users do
-    resources :tray_positions do
+    resources :tray_positions, :controller => 'FassetsCore::TrayPositions' do
       collection do
         put :replace
       end
@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   end
 
   # assets
-  resources :urls
-  resources :file_assets do
+  resources :urls, :controller => 'FassetsCore::Urls'
+  resources :file_assets, :controller => 'FassetsCore::FileAssets' do
     member do
       get :thumb
       get :preview

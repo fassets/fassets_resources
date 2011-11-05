@@ -34,5 +34,5 @@ FassetsCore::Engine.routes.draw do
   match 'assets/:id/preview' => 'assets#preview'
   match 'assets/:id/edit' => 'assets#edit'
 
-  root :to => "FassetsCore::Catalogs#index"
+  root :to => "Catalogs#index"
 end

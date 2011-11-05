@@ -2,8 +2,10 @@ PATH
   remote: .
   specs:
     fassets_core (0.0.1)
+      haml
       jquery-rails
       rails (~> 3.1.1)
+      sqlite3
 
 GEM
   remote: http://rubygems.org/
@@ -108,4 +110,3 @@ DEPENDENCIES
   fassets_core!
   haml
   jquery-rails
-  sqlite3

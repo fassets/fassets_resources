@@ -35,7 +35,6 @@ a.icon.link {
 a.icon.file {
   background-image: image-url("fassets_core/image.png");
 }
-
 li {
 	list-style: none;
 }
@@ -185,17 +184,6 @@ ul#catalogs li {
   min-height: 25em;
   width: 75%;
 }
-#edit_warning {
-  position: relative;
-	color:  red;
-	font-weight: bold;
-	font-size: 10pt;
-	padding-left: 36px;
-	line-height: 32px;
-  padding-right: 40px;
-  float:right;
-	background: image-url("fassets_core/warning.png") no-repeat;
-}
 /* @end */
 
 h1 {
@@ -302,43 +290,6 @@ h1 #action {
 /* @end */
 
 /* @group Assets */
-
-li.asset {
-	position: relative;
-	float: left;
-	width: 250px;
-	height:  48px;
-	margin: 0 1em 1em 0;
-}
-
-li.asset .icon {
-	float:  left;
-	width: 52px;
-	height:  48px;
-}
-li.asset .caption {
-	display: block;
-	line-height: 48px;
-	height: 48px;
-	overflow: hidden;
-}
-li.asset .type{
-	position: absolute;
-	top: 2px;
-	left:  52px;
-	color: #999;
-	font-size: .8em;
-}
-li.asset .action{
-	position: absolute;
-	top: 2px;
-	right:  2px;
-}
-li.asset input {
-	position: absolute;
-	bottom: 0px;
-	left:  52px;
-}
 
 /* @end */
 

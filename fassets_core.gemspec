@@ -7,8 +7,8 @@ require "fassets_core/version"
 Gem::Specification.new do |s|
   s.name        = "fassets_core"
   s.version     = FassetsCore::VERSION
-  s.authors     = ["Julian Bäume"]
-  s.email       = ["julian@svg4all.de"]
+  s.authors     = ["Julian Bäume", "Christopher Sharp"]
+  s.email       = ["julian@svg4all.de", "cdsharp@gmail.com"]
   s.homepage    = "https://github.com/fassets/"
   s.summary     = "A facetted classification framework for digital assets."
   s.description = "A facetted classification framework for digital assets."

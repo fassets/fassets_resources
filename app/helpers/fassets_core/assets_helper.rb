@@ -7,7 +7,7 @@ module FassetsCore
     # construct the path for the assets content
     def asset_content_path(content)
       class_name = content.class.to_s.split("::").last
-      "#{root_path}#{class_name.underscore.pluralize}/#{content.id.to_s}"
+      "#{main_app.root_path}#{class_name.underscore.pluralize}/#{content.id.to_s}"
     end
     def edit_asset_content_path(content)
       asset_content_path(content) + "/edit"

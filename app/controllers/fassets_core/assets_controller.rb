@@ -1,5 +1,6 @@
 module FassetsCore
   class AssetsController < ApplicationController
+    include AssetsHelper
     before_filter :authenticate_user!, :except => [:show]
     before_filter :find_content, :except => [:new, :create, :preview, :markup_preview,:copy]
 
@@ -15,7 +16,7 @@ module FassetsCore
         classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
         classification.save
         flash[:notice] = "Created new asset!"
-        redirect_to url_for(@content) + "/edit"
+        redirect_to asset_content_path(@content) + "/edit"
       else
         render :template => 'fassets_core/assets/new'
       end
@@ -54,7 +55,9 @@ module FassetsCore
 
     protected
     def content_params
-      params[self.content_model.to_s.underscore]
+      field_name = self.content_model.to_s.underscore.gsub("/","_")
+      logger.debug field_name
+      params[field_name]
     end
     def find_content
       if params[:asset_id]

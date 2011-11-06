@@ -1,12 +1,12 @@
 %li.asset{:id => tp ? "tp_#{tp.id}" : "asset_#{asset.id}", :rel => tp ? asset.id : nil, :asset_id => asset ? asset.id: nil}
   .icon
     =render :partial => content_partial(asset.content, :icon), :locals => {:content => asset.content}
-  =link_to asset.name, main_app.url_for(asset.content), :class => "caption"
+  =link_to asset.name, asset_content_path(asset.content, asset.id), :class => "caption"
   .type
     =asset.content.media_type.upcase
   .action
     -if user_signed_in?
-      =link_to image_tag("fassets_core/edit.png", :width => 15,  :height => 15), main_app.url_for(asset.content) + "/edit"
+      =link_to image_tag("fassets_core/edit.png", :width => 15,  :height => 15), asset_content_path(asset.content, asset.id) + "/edit"
       =image_tag "fassets_core/drag.png", :width => 12, :height => 13, :class => "handle"
   -if tp
     =check_box_tag "del[]", tp.id

@@ -2,16 +2,14 @@
   #type
     =@content.media_type.capitalize
   #title
-    =link_to @content.asset.name, url_for(@content)
+    =link_to @content.asset.name, asset_content_path(@content)
   #action
     %span.action
-      =button_to "Delete", [@content], :method => :delete, :onclick => "return confirm('Are you sure?')"
-      =render :partial => "assets/put_on_tray"
-      -if @content.class == Presentation
-        =button_to "Create Copy", presentation_copy_path(@content), :method => :copy, :onclick => "return confirm('Do you really want to create a copy?')"
+      =button_to "Delete", asset_content_path(@content), :method => :delete, :onclick => "return confirm('Are you sure?')"
+      =render :partial => "fassets_core/assets/put_on_tray"
 
 #sidebar
-  =render :partial => "assets/classification", :locals => {:asset => @content.asset}
-  =render :partial => @content.class.to_s.underscore.pluralize + "/sidebar"
+  =render :partial => "fassets_core/assets/classification", :locals => {:asset => @content.asset}
+  =render :partial => "#{@content.class.to_s.underscore.pluralize}/sidebar"
 #main
-  =render :partial => "assets/form", :locals => {:new => false}
+  =render :partial => "fassets_core/assets/form", :locals => {:new => false}

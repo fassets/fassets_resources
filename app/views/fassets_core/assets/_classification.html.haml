@@ -3,7 +3,7 @@
   %p
     %label{:for => 'catalog_id'} Catalog:
     =select("classification", "catalog_id", FassetsCore::Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
-  =f.hidden_field "classification", :asset_id
+  =hidden_field "classification", :asset_id
   =submit_tag "Create"    
 
 

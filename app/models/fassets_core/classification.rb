@@ -4,7 +4,7 @@ module FassetsCore
     has_many :labelings, :dependent => :destroy
     has_many :labels, :through => :labelings
     belongs_to :asset, :counter_cache => true
-
+    validates_presence_of :asset
   end
 end
 

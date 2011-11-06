@@ -1,6 +1,7 @@
 - content_for :head do
   =stylesheet_link_tag 'fassets_core/application'
   =javascript_include_tag 'fassets_core/application'
+  =yield :head
 
 - content_for :catalogs_selector do
   =collection_select :catalog, :id, FassetsCore::Catalog.all, :id, :title, options ={:prompt => "Catalogs ..."},  :onchange => "javascript:window.location= '/catalogs/' + this.value"
@@ -8,15 +9,16 @@
 - content_for :tray do
   - if user_signed_in?
     =form_tag(main_app.replace_user_tray_positions_path(current_user), :id => "tray", :method => :put) do
-      %ul
+      %ul#create_links
         %li=link_to "New URL", main_app.new_url_path
         %li=link_to "New File", main_app.new_file_asset_path
-        %ol.sortable{:id => "users.#{current_user.id}.tray_positions.replace",:class => "sortable_tray"}
-          -current_user.tray_positions.each do |tp|
-            -if tp.clipboard_type
-              =render :partial => "fassets_core/shared/clipboard", :locals => {:tp => tp}
-            -else
-              =render :partial => "fassets_core/shared/asset", :locals => {:tp => tp, :asset => tp.asset}
-        =submit_tag "Drop Selected"
+        =yield :create_asset_link
+      %ol.sortable{:id => "users.#{current_user.id}.tray_positions.replace",:class => "sortable_tray"}
+        -current_user.tray_positions.each do |tp|
+          -if tp.clipboard_type
+            =render :partial => "fassets_core/shared/clipboard", :locals => {:tp => tp}
+          -else
+            =render :partial => "fassets_core/shared/asset", :locals => {:tp => tp, :asset => tp.asset}
+      =submit_tag "Drop Selected"
 
 =render :template => 'layouts/application'

@@ -3,7 +3,7 @@
   %p
     %label{:for => 'catalog_id'} Catalog:
     =select("classification", "catalog_id", FassetsCore::Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
-  =f.hidden_field :asset_id
+  =f.hidden_field "classification", :asset_id
   =submit_tag "Create"    
 
 
@@ -13,9 +13,9 @@
   -@content.asset.classifications.each do |classification|
     -catalogs << classification.catalog_id
     %li
-      =link_to classification.catalog.title, catalog_path(classification.catalog)
+      =link_to classification.catalog.title, main_app.catalog_path(classification.catalog)
       .content
-        =form_for classification, :method => :put do |f|
+        =form_for classification, :url => main_app.classifications_path, :method => :put do |f|
           -classification.catalog.facets.each do |facet|
             .facet{:class => "#{facet.color}_lite"}
               .caption{:class => facet.color}

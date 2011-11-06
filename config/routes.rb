@@ -6,9 +6,8 @@ Rails.application.routes.draw do
           put :sort
         end
       end
-
-      put :add_asset
     end
+    put :add_asset
   end
 
   resources :classifications, :controller => 'FassetsCore::Classifications'

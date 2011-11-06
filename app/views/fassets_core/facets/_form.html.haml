@@ -1,6 +1,6 @@
 %p
   %label{:for => 'caption'} Caption:
-  =form.text_field :caption
+  =text_field :facet, :caption
 %p
   %label{:for => 'order'} Label Order:
   =select(:facet, :label_order, FassetsCore::Facet::LABEL_ORDER)

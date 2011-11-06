@@ -29,8 +29,10 @@ $(function(){
         type: 'put',
         url: window.location.href + "/add_asset",
         data: "&asset_id="+id,
+        success: function(){
+          window.location.reload();
+        }
       });
-      window.location.reload();
     }
   });
 });

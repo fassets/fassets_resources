@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
-  match 'assets/:id/preview' => 'assets#preview'
-  match 'assets/:id/edit' => 'assets#edit'
+  match 'asset/:id/preview' => 'FassetsCore::Assets#preview'
+  match 'asset/:id/edit' => 'FassetsCore::Assets#edit'
 
   root :to => "Catalogs#index"
 end

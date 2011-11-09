@@ -1,0 +1,23 @@
+#catalog_list
+  Catalogs
+  -FassetsCore::Catalog.all.each do |catalog|
+    .catalog_item
+      =link_to catalog.title, "/catalog_box?id="+catalog.id.to_s, :class => "catalog_list_item", :id => selected_catalog == catalog.id ? "selected" : ""
+#facets
+  =render :partial => "facet", :collection => @catalog.facets, :locals => {:fancybox => true}
+#catalog_box_content
+  -if @filter.empty?
+    %h2 Assets
+  -else
+    %h2
+      Filtered Assets
+    #filter
+      %ul
+        -FassetsCore::Label.in(@filter).each do |filter_item|
+          %li.item
+            %strong{:class => filter_item.facet.color}="#{filter_item.facet.caption}: #{filter_item.caption}"
+            =link_to "drop", "/catalog_box",:id => @catalog, :filter => @filter.to_query_exclude(filter_item.id)
+        =#render :partial => "filter_item", :collection => FassetsCore::Label.in(@filter)
+        %li{:style => "clear:both"}=link_to "clear filter", "/catalog_box?id="+@catalog.id.to_s, :class => "icon remove"
+  %ul#assets
+    =render :partial => "fassets_core/shared/asset", :collection => @assets, :locals => {:tp => nil}

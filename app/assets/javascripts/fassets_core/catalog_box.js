@@ -17,6 +17,8 @@ $(document).ready(function(){
           width: f_width,
           height: f_height
         });
+        $("#box_content").css("left",$("#catalog_list").width()+10);
+        $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
         fancybox_links();
         $.fancybox.resize();
 		  }

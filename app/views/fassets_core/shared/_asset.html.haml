@@ -1,13 +1,16 @@
 %li.asset{:id => tp ? "tp_#{tp.id}" : "asset_#{asset.id}", :rel => tp ? asset.id : nil, :asset_id => asset ? asset.id: nil}
-  .icon
-    =render :partial => content_partial(asset.content, :icon), :locals => {:content => asset.content}
-  =link_to asset.name, asset_content_path(asset.content), :class => "caption"
-  .type
-    =asset.content.media_type.upcase
-  .action
-    -if user_signed_in?
-      =link_to image_tag("fassets_core/edit.png", :width => 15,  :height => 15), asset_content_path(asset.content) + "/edit"
-      =image_tag "fassets_core/drag.png", :width => 12, :height => 13, :class => "handle"
-  -if tp
-    =check_box_tag "del[]", tp.id
-
+  .asset_content
+    .icon
+      =render :partial => content_partial(asset.content, :icon), :locals => {:content => asset.content}
+    .caption
+      =link_to asset.name, asset_content_path(asset.content), :class => "caption"
+  .asset_actions
+    .action
+      -if user_signed_in?
+        =button_to "Edit", asset_content_path(asset.content) + "/edit", :method => :get
+        =#image_tag "fassets_core/drag.png", :width => 12, :height => 13, :class => "handle"
+        -if tp
+          =button_to "Drop", main_app.user_tray_position_path(current_user,tp.id), :method => :delete 
+        -else
+          -@content = asset.content
+          =render :partial => "fassets_core/assets/put_on_tray", :locals => {}

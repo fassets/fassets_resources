@@ -30,7 +30,7 @@ module FassetsCore
     def update
       if @content.update_attributes(content_params) and @content.asset.update_attributes(params["asset"])
         flash[:notice] = "Succesfully updated asset!"
-        redirect_to url_for(@content) + "/edit"
+        redirect_to asset_content_path(@content) + "/edit"
       else
         flash[:error] = "Could not update asset!"
         render :template => 'fassets_core/assets/edit'

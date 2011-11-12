@@ -26,14 +26,13 @@
 }
 
 #tray ol {
-  min-height: 48px;
-  margin-top: .7em;
+  min-height: 120px;
 }
 
 #tray ol li.asset_placeholder {
   float: left;
-  height: 48px;
-  width: 250px;
+  height: 102px;
+  width: 80px;
   margin: 0 1em 1em 0;
   background-color: #bfd8f7;
 }
@@ -45,11 +44,6 @@
 #tray ol.hover {
   border: 1px solid #0060ff;
   background-color: #dce9ff;
-}
-
-#tray input {
-  float: right;
-  margin-right: 2em;
 }
 
 #tray ol li.clipboard {
@@ -99,6 +93,6 @@
   margin-bottom: 2px;
 }
 
-.button_to {
-  float: left;
-}
+//.button_to {
+//  float: left;
+//}

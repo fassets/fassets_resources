@@ -3,7 +3,7 @@
     .icon
       =render :partial => content_partial(asset.content, :icon), :locals => {:content => asset.content}
     .caption
-      =link_to asset.name, asset_content_path(asset.content), :class => "caption"
+      =link_to truncate(asset.name,:length => 13,:omission => "..."), asset_content_path(asset.content), :class => "caption"
   .asset_actions
     .action
       -if user_signed_in?

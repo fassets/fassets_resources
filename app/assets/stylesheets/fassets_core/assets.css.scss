@@ -3,11 +3,13 @@ li.asset {
   display: inline-block;
   width: 88px;
   height:  102px;
-  padding: 12px;
+  padding: 6px;
   margin: 0 2em .5em 0;
+  background: #666666;
+  border: 2px solid #555555;
+  border-radius: 5px;
 
   .asset_content {
-    background: white;
     width: 80px;
     height: 80px;
 
@@ -35,6 +37,7 @@ li.asset {
       border-radius: 5px;
       border: 1px solid black;
       text-align: center;
+      margin-top: 4px;
       margin-bottom: 2px;
 
       a {
@@ -45,15 +48,21 @@ li.asset {
 
   .asset_actions {
     width: 48px;
-    height: 80px;
+    height: 65px;
     position: absolute;
-    left: 98px;
+    left: 100px;
     top: 12px;
     display: none;
     z-index: 10;
+    background: #666666;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 2px solid #555555;
+    border-left-style: none;
+    padding: 3px;
 
     input {
-      margin: 0;
+      margin: 2px;
     }
   }
 }

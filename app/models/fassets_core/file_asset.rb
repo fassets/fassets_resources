@@ -7,6 +7,7 @@ module FassetsCore
       'image/png' => 'image',
       'image/gif' => 'image',   
       'image/tiff' => 'image',
+      'image/svg+xml' => 'image'
       'video/flv' => 'video',
       'video/x-flv' => 'video'
     }

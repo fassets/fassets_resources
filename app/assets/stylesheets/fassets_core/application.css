@@ -5,4 +5,5 @@
  *= require fassets_core/tray
  *= require fassets_core/labels
  *= require fassets_core/forms
+ *= require fassets_core/collapsible
 */

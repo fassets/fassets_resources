@@ -4,41 +4,9 @@ form.fassets_core {
   p {
     text-indent: 0;
   }
-}
 
-form.inline {
-	margin: 0;
-	display: inline;
-}
-form.button-to {
-	display: inline;
-}
-form.button-to div {
-	display: inline;
-}
-form.button-to div input{
-	font-size: 8pt;
-}
-
-form.panel {
-	margin-bottom: 1em;
-}
-
-form p {
-	margin-bottom: 1em;
-}
-label {
-	margin-bottom: .3em;
-	font-weight: bold;
-}
-textarea {
-	font: 1em Monaco, "Courier New", Courier, mono;
-}
-
-.submit {
-	margin-top: 1em;
-}
-form.button-to .delete-button {
-  background-image: image-url("fassets_core/delete.png");
+  .submit {
+    margin-top: 1em;
+  }
 }
 

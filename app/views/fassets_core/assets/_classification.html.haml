@@ -1,5 +1,5 @@
 %h2.classificationtitle New Classification
-=form_for FassetsCore::Classification.new(:asset_id => @content.asset.id), :url => main_app.classifications_path, :html=>{:class => 'collapsable_classification'} do |f|
+=form_for FassetsCore::Classification.new(:asset_id => @content.asset.id), :url => main_app.classifications_path, :html => {:class => "fassets_core"} do |f|
   %p
     %label{:for => 'catalog_id'} Catalog:
     =select("classification", "catalog_id", FassetsCore::Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
@@ -15,7 +15,7 @@
     %li
       =link_to classification.catalog.title, main_app.catalog_path(classification.catalog)
       .content
-        =form_for classification, :url => main_app.classifications_path, :method => :put do |f|
+        =form_for classification, :url => main_app.classifications_path, :method => :put, :html => {:class => "fassets_core"} do |f|
           -classification.catalog.facets.each do |facet|
             .facet{:class => "#{facet.color}_lite"}
               .caption{:class => facet.color}
@@ -27,3 +27,4 @@
                     =link_to label.caption.gsub(' ', "&nbsp;")
           =submit_tag "Save"
           =submit_tag "Drop", :style => "float: left", :onclick => "return confirm('Are you sure?')"
+

@@ -21,7 +21,7 @@
         %li{:id => "label_#{label.id}"}
           =label.caption
           .content
-            =form_for [@catalog, @facet, label] ,:url => catalog_facet_labels_path(@catalog, @facet), :html => {:class => "fassets_core facet"} do |f|
+            =form_for [@catalog, @facet, label] ,:url => catalog_facet_labels_path(@catalog, @facet) do |f|
               =render :partial => "fassets_core/labels/form", :object => f
               =submit_tag "Save"
 #main.fassets_core

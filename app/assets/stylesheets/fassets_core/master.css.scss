@@ -26,13 +26,6 @@ a.icon.file {
 	clear: both;
 }
 
-.collapsiblePanelTitle {
-  display: inline;
-}
-.collapsiblePanelTitle img {
-  float: left;
-  padding-right: 0.5em;
-}
 
 /* @group Header */
 #message {
@@ -280,51 +273,6 @@ span.color {
 .gray_lite {color: #3a3a3a;}
 
 /* @end */
-
-.collapsibleContainer
-{
-    border: solid 1px #9BB5C1;
-
-}
-
-.collapsibleContainerTitle
-{
-    cursor:pointer;
-}
-
-.collapsibleContainerTitle div
-{
-    padding-top:2px;
-    padding-bottom:2px;
-    padding-left:10px;
-	  font-size: 1.4em;
-    background-color: #F5F5F5;
-    border: solid 1px grey;
-    border-bottom-right-radius: 1em;
-    border-top-right-radius: 1em;
-    border-bottom-left-radius: 1em;
-    border-top-left-radius: 1em;
-}
-
-.collection .collapsibleContainerTitle div
-{
-    padding-top:2px;
-    padding-bottom:2px;
-    padding-left:10px;
-	  font-size: 1.4em;
-    border: none;
-    background-color: white;
-    color: black;
-    border-bottom-right-radius: 1em;
-    border-top-right-radius: 1em;
-    border-bottom-left-radius: 1em;
-    border-top-left-radius: 1em;
-}
-
-.collapsibleContainerContent
-{
-    padding: 10px;
-}
 
 #drop_asset {
   cursor: 'pointer';

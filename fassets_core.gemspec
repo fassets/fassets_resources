@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A facetted classification framework for digital assets."
   s.description = "A facetted classification framework for digital assets."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.1"

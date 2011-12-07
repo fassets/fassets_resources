@@ -35,6 +35,18 @@ module FassetsCore
         format.js {render :nothing  => true}
       end
     end
+    def destroy
+      @label.destroy
+      @facet = @label.facet
+      @catalog = @facet.catalog
+      @label = nil
+
+      flash[:notice] = "Label removed."
+      respond_to do |format|
+        format.js { }
+        format.html { redirect_to :back }
+      end
+    end
     protected
     def find_label
       @label = FassetsCore::Label.find(params[:id])

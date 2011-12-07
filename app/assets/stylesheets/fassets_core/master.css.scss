@@ -133,12 +133,7 @@ ul#catalogs li {
 	border: 1px solid #0060ff;
 	background-color: #dce9ff;
 }
-#sidebar {
-	float: right;
-  right: 0%;
-  width: 25%;
-  height: 100%;
-}
+
 #main {
 	float: left;
   height: 100%;
@@ -220,30 +215,6 @@ ul#catalogs li {
 }
 
 /* @end */
-
-#sidebar .collection {
-	margin-bottom: .5em;
-}
-#sidebar .collection li {
-	padding: .3em .5em;
-/*	border-bottom: 1px solid #eee;	*/
-}
-.handle {
-	cursor: move;
-}
-#sidebar li.collapsable .content{
-	margin-top: .5em;
-}
-#sidebar li.topic {
-  font-weight: bold;
-}
-#sidebar li.slide {
-  font-weight: normal;
-}
-
-#sidebar form input[type=text] {
-	width: 90%;
-}
 
 /* @group FacetColors */
 

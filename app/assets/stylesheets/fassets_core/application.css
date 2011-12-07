@@ -7,4 +7,5 @@
  *= require fassets_core/forms
  *= require fassets_core/collapsible
  *= require fassets_core/sidebar
+ *= require fassets_core/filter
 */

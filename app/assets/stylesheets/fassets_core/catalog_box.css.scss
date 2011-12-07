@@ -1,0 +1,78 @@
+#catalog_list {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  height: 100%;
+  font-size: 1em;
+  padding-right: 0;
+  background: silver;
+  .catalog_item {
+    margin-top: .5em;
+    padding: .5em .0em .5em .5em;
+    width: 100%;
+    a {
+      float: right;
+      padding: .5em;
+      padding-right: 1em;
+    }
+    #selected {
+      border: 1px solid white;
+      border-right: 1px solid white;
+      border-right-style: none;
+	    border-top-left-radius: 10px;
+	    border-bottom-left-radius: 10px;
+      background: white;
+    }
+  }
+}
+#content {
+  position: absolute;
+  height: 100%;
+}
+#box_content {
+  position: relative;
+  top: 5px;
+  height: 98%;
+  left: 200px;
+}
+#facets{
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  width: 20%; 
+  .box_facet{
+  	margin-bottom: 1em;
+  	border-radius: 5px;
+    ul {
+	    padding: .3em;
+    }
+    .action {
+	    text-align: right;
+    }
+    .label {
+	    display: inline;
+	    padding-right: .8em;
+      .count {
+        font-size: .8em;
+      }
+    }
+    .caption {
+	    border-top-left-radius: 5px;
+	    border-top-right-radius: 5px;
+	    color: white;
+	    padding: .2em .5em;
+	    font-weight: bold;
+      a {
+        color: white;
+	      text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+    .labels {
+      padding: .5em;
+    }
+  }
+}

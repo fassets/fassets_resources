@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   match 'asset/:id/preview' => 'FassetsCore::Assets#preview'
   match 'asset/:id/edit' => 'FassetsCore::Assets#edit'
+  match 'catalog_box' => 'FassetsCore::Catalogs#catalog_box'
+  match 'box_content' => 'FassetsCore::Catalogs#box_content'
+  match 'box_facet' => 'FassetsCore::Catalogs#box_facet'
 
   root :to => "Catalogs#index"
 end

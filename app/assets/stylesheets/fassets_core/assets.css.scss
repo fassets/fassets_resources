@@ -1,41 +1,68 @@
 li.asset {
-	position: relative;
-        display: inline-block;
-	width: 250px;
-        height:  48px;
-        margin: 0 1em 1em 0;
+  position: relative;
+  display: inline-block;
+  width: 88px;
+  height:  102px;
+  padding: 6px;
+  margin: 0 2em .5em 0;
+  background: #666666;
+  border: 2px solid #555555;
+  border-radius: 5px;
 
-  .icon {
-	float:  left;
-	width: 52px;
-	height:  48px;
+  .asset_content {
+    width: 80px;
+    height: 80px;
+
+    .icon {
+      display: block;
+      position: relative;
+      width: 72px;
+      height: 72px;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-bottom: 8px;
+
+      .thumbnail img {
+        border: 2px solid silver;
+      }
+    }
+    .caption {
+      display: block;
+      background: black;
+      color: white;
+      position: relative;
+      bottom: 2px;
+      left: 0px;
+      width: 88px;
+      border-radius: 5px;
+      border: 1px solid black;
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 2px;
+
+      a {
+        margin-top: 0;
+      }
+    }
   }
 
-  .caption {
-	display: block;
-	line-height: 48px;
-	height: 48px;
-        left: 50px;
-	overflow: hidden;
-  }
+  .asset_actions {
+    width: 48px;
+    height: 65px;
+    position: absolute;
+    left: 100px;
+    top: 12px;
+    display: none;
+    z-index: 10;
+    background: #666666;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 2px solid #555555;
+    border-left-style: none;
+    padding: 3px;
 
-  .type{
-	position: absolute;
-	top: 2px;
-	left:  52px;
-	color: #999;
-	font-size: .8em;
-  }
-
-  .action{
-	position: absolute;
-	top: 2px;
-	right:  2px;
-  }
-
-  input {
-	position: absolute;
-	bottom: 0px;
-	left:  52px;
+    input {
+      margin: 2px;
+    }
   }
 }

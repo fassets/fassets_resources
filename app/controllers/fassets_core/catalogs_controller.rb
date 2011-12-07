@@ -2,7 +2,7 @@ module FassetsCore
   class CatalogsController < ApplicationController
     before_filter :authenticate_user!, :except => [:index, :show]
 
-    before_filter :find_catalog, :except => [:index, :new, :create, :add_asset]
+    before_filter :find_catalog, :except => [:index, :new, :create, :add_asset, :catalog_box]
     def index
       @catalogs = Catalog.all
     end
@@ -63,6 +63,28 @@ module FassetsCore
         flash[:error] = "Could not add asset to catalog"
       end
       redirect_to catalog_path(@catalog)
+    end
+    def catalog_box
+      if params[:id]
+        @catalog = FassetsCore::Catalog.find(params[:id])
+      else
+        @catalog = FassetsCore::Catalog.first
+      end
+      @filter = LabelFilter.new(params[:filter])
+      @assets = @catalog.assets.filter(@filter)
+      @counts = 0
+      render :template => "fassets_core/catalogs/box", :layout => false, :locals => {:selected_catalog => @catalog.id}
+    end
+    def box_content
+      @filter = LabelFilter.new(params[:filter])
+      @assets = @catalog.assets.filter(@filter)
+      @counts = 0
+      render :partial => "box_content"
+    end
+    def box_facet
+      @filter = LabelFilter.new(params[:filter])
+      @counts = 0
+      render :partial => "box_facet", :collection => @catalog.facets, :as => :facet
     end
     protected
     def find_catalog

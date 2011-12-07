@@ -20,7 +20,7 @@ module FassetsCore
       #:url => "/files/:id/:style.:extension",
       :path => ":rails_root/public/uploads/:id/:style.:extension",
       :styles => {
-      :thumb => "48x48#",
+      :thumb => "72x72#",
       :small => "400x300>"
     }
     before_post_process :image?

@@ -3,13 +3,18 @@ module FassetsCore
     before_filter :authenticate_user!
     def create
       if current_user.tray_positions.maximum(:position)
-        params[:tray_position][:position] = current_user.tray_positions.maximum(:position)+1
+        params[:fassets_core_tray_position][:position] = current_user.tray_positions.maximum(:position)+1
       else
-        params[:tray_position][:position] = 1
+        params[:fassets_core_tray_position][:position] = 1
       end
-      tp = TrayPosition.new(params[:tray_position])
+      tp = TrayPosition.new(params[:fassets_core_tray_position])
       tp.clipboard_type.capitalize! if tp.clipboard_type
       tp.save
+      redirect_to :back
+    end
+    def destroy
+      tp = TrayPosition.find(params[:id])
+      tp.destroy()
       redirect_to :back
     end
     def replace

@@ -7,22 +7,24 @@
     =@facet.caption
   #action
     =button_to "Delete", catalog_facet_path(@catalog, @facet), :method => :delete, :onclick => "return confirm('Are you sure?')"
-#sidebar
-  %h2.labeltitle New Label
-  =form_for [@catalog, @facet, FassetsCore::Label.new], :url => catalog_facet_labels_path(@catalog,@facet),:html => {:class => "collapsable_label"} do |f|
-    =render :partial => "fassets_core/labels/form", :object => f
-    =submit_tag "Create"
+#sidebar.fassets_core
+  .collapsible
+    %h2.title New Label
+    =form_for [@catalog, @facet, FassetsCore::Label.new], :url => catalog_facet_labels_path(@catalog,@facet) do |f|
+      =render :partial => "fassets_core/labels/form", :object => f
+      =submit_tag "Create"
 
-  %h2.facetlabelstitle Labels
-  %ol.collection.collapsable_facetlabels{:class => @facet.label_order == 'position' ? "sortable" : nil, :id => "catalogs.#{@catalog.id}.facets.#{@facet.id}.labels.sort"}
-    -@facet.ordered_labels.each do |label|
-      %li{:id => "label_#{label.id}"}
-        =label.caption
-        .content
-          =form_for [@catalog, @facet, label] ,:url => catalog_facet_labels_path(@catalog, @facet) do |f|
-            =render :partial => "fassets_core/labels/form", :object => f
-            =submit_tag "Save" 
-#main  
+  .collapsible
+    %h2.title Labels
+    %ol.collection{:class => @facet.label_order == 'position' ? "sortable" : nil, :id => "catalogs.#{@catalog.id}.facets.#{@facet.id}.labels.sort"}
+      -@facet.ordered_labels.each do |label|
+        %li{:id => "label_#{label.id}"}
+          =label.caption
+          .content
+            =form_for [@catalog, @facet, label] ,:url => catalog_facet_labels_path(@catalog, @facet), :html => {:class => "fassets_core facet"} do |f|
+              =render :partial => "fassets_core/labels/form", :object => f
+              =submit_tag "Save"
+#main.fassets_core
   =form_for [@catalog, @facet], :url => catalog_facet_path(@catalog,@facet) do |f|
     =render :partial => "form", :object => f
     =submit_tag "Save"

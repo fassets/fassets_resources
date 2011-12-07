@@ -1,37 +1,41 @@
 li.asset {
 	position: relative;
-	float: left;
+        display: inline-block;
 	width: 250px;
-	height:  48px;
-	margin: 0 1em 1em 0;
-}
+        height:  48px;
+        margin: 0 1em 1em 0;
 
-li.asset .icon {
+  .icon {
 	float:  left;
 	width: 52px;
 	height:  48px;
-}
-li.asset .caption {
+  }
+
+  .caption {
 	display: block;
 	line-height: 48px;
 	height: 48px;
-  left: 50px;
+        left: 50px;
 	overflow: hidden;
-}
-li.asset .type{
+  }
+
+  .type{
 	position: absolute;
 	top: 2px;
 	left:  52px;
 	color: #999;
 	font-size: .8em;
-}
-li.asset .action{
+  }
+
+  .action{
 	position: absolute;
 	top: 2px;
 	right:  2px;
-}
-li.asset input {
+  }
+
+  input {
 	position: absolute;
 	bottom: 0px;
 	left:  52px;
+  }
 }

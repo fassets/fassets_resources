@@ -1,0 +1,19 @@
+#sidebar {
+  float: right;
+  right: 0%;
+  width: 25%;
+  height: 100%;
+
+  .collection {
+    margin-bottom: .5em;
+    padding: 0;
+  
+    li {
+      padding: .3em .5em;
+    }
+  }
+  
+  form input[type=text] {
+    width: 90%;
+  }
+}

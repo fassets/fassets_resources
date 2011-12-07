@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :catalogs, :controller => 'FassetsCore::Catalogs' do
-    resources :facets, :controller => 'FassetsCore::Facets' do
-      resources :labels, :controller => 'FassetsCore::Labels' do
+  resources :catalogs do
+    resources :facets do
+      resources :labels do
         collection do
           put :sort
         end
@@ -10,10 +10,10 @@ Rails.application.routes.draw do
     put :add_asset
   end
 
-  resources :classifications, :controller => 'FassetsCore::Classifications'
+  resources :classifications
 
   resources :users do
-    resources :tray_positions, :controller => 'FassetsCore::TrayPositions' do
+    resources :tray_positions do
       collection do
         put :replace
       end
@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   end
 
   # assets
-  resources :urls, :controller => 'FassetsCore::Urls'
-  resources :file_assets, :controller => 'FassetsCore::FileAssets' do
+  resources :urls
+  resources :file_assets do
     member do
       get :thumb
       get :preview
@@ -30,11 +30,11 @@ Rails.application.routes.draw do
     end
   end
 
-  match 'asset/:id/preview' => 'FassetsCore::Assets#preview'
-  match 'asset/:id/edit' => 'FassetsCore::Assets#edit'
-  match 'catalog_box' => 'FassetsCore::Catalogs#catalog_box'
-  match 'box_content' => 'FassetsCore::Catalogs#box_content'
-  match 'box_facet' => 'FassetsCore::Catalogs#box_facet'
+  match 'asset/:id/preview' => 'Assets#preview'
+  match 'asset/:id/edit' => 'Assets#edit'
+  match 'catalog_box' => 'Catalogs#catalog_box'
+  match 'box_content' => 'Catalogs#box_content'
+  match 'box_facet' => 'Catalogs#box_facet'
 
   root :to => "Catalogs#index"
 end

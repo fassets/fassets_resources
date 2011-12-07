@@ -1,0 +1,3 @@
+-Catalog.all.each do |catalog|
+  .catalog_item
+    =link_to catalog.title, "/catalog_box?id="+catalog.id.to_s, :class => "catalog_list_item", :id => selected_catalog == catalog.id ? "selected" : "", :catalog_id => catalog.id

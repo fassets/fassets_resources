@@ -7,10 +7,10 @@
     =@facet.caption
   #action
     =button_to "Delete", catalog_facet_path(@catalog, @facet), :method => :delete, :onclick => "return confirm('Are you sure?')"
-#sidebar
+#sidebar.fassets_core
   .collapsible
     %h2.title New Label
-    =form_for [@catalog, @facet, FassetsCore::Label.new], :url => catalog_facet_labels_path(@catalog,@facet),:html => {:class => "fassets_core facet"} do |f|
+    =form_for [@catalog, @facet, FassetsCore::Label.new], :url => catalog_facet_labels_path(@catalog,@facet) do |f|
       =render :partial => "fassets_core/labels/form", :object => f
       =submit_tag "Create"
 
@@ -24,7 +24,7 @@
             =form_for [@catalog, @facet, label] ,:url => catalog_facet_labels_path(@catalog, @facet), :html => {:class => "fassets_core facet"} do |f|
               =render :partial => "fassets_core/labels/form", :object => f
               =submit_tag "Save"
-#main  
-  =form_for [@catalog, @facet], :url => catalog_facet_path(@catalog,@facet), :html => {:class => "fassets_core facet"} do |f|
+#main.fassets_core
+  =form_for [@catalog, @facet], :url => catalog_facet_path(@catalog,@facet) do |f|
     =render :partial => "form", :object => f
     =submit_tag "Save"

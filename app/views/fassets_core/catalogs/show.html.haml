@@ -5,11 +5,11 @@
     -if user_signed_in?
       %span.action
         =link_to image_tag("fassets_core/edit.png"), edit_catalog_path(@catalog)
-#sidebar
+#sidebar.fassets_core
   -if user_signed_in?
     .collapsible
       %h2.title Add Facet
-      =form_for [@catalog, FassetsCore::Facet.new], :url => catalog_facets_path(@catalog, FassetsCore::Facet.new), :html => {:class => 'fassets_core'} do |f|
+      =form_for [@catalog, FassetsCore::Facet.new], :url => catalog_facets_path(@catalog, FassetsCore::Facet.new) do |f|
         =render :partial => "fassets_core/facets/form", :object => f
         =submit_tag "Create"
   =render :partial => "facet", :collection => @catalog.facets  

@@ -1,12 +1,12 @@
-form.fassets_core {
-  text-align: left;
+.fassets_core {
+  form {
+    p {
+      text-indent: 0;
+    }
 
-  p {
-    text-indent: 0;
-  }
-
-  .submit {
-    margin-top: 1em;
+    .submit {
+      margin-top: 1em;
+    }
   }
 }
 

@@ -1,10 +1,10 @@
 =content_for :h1 do
   Fassets Development
-#sidebar
+#sidebar.fassets_core
   -if user_signed_in?
     .collapsible
       %h2.title New Catalog
-      =form_for FassetsCore::Catalog.new, :url => catalogs_path, :html => {:class => "fassets_core"} do |f|
+      =form_for FassetsCore::Catalog.new, :url => catalogs_path do |f|
         =render :partial => "form", :object => f
         =submit_tag "Create"
   %ul.collection

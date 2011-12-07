@@ -1,0 +1,44 @@
+#sidebar .facet{
+  margin-bottom: 1em;
+  -webkit-border-radius: 5px;
+  -webkit-border-radius: 5px;
+
+  ul {
+    padding: .3em;
+  }
+
+  .action {
+    text-align: right;
+  }
+
+  .label {
+    display: inline;
+    padding-right: .8em;
+  
+    .count {
+      font-size: .8em;
+    }
+  }
+
+  .caption {
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    color: white;
+    padding: .2em .5em;
+    font-weight: bold;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .labels {
+    padding: .5em;
+  }
+}
+

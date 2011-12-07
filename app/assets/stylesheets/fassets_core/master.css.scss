@@ -141,48 +141,6 @@ ul#catalogs li {
 	font-weight: bold;
 }
 
-/* @group Facets */
-
-#sidebar .facet{
-	margin-bottom: 1em;
-	-webkit-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-#sidebar .facet ul {
-	padding: .3em;
-}
-#sidebar .facet .action {
-	text-align: right;
-}
-#sidebar .facet .label {
-	display: inline;
-	padding-right: .8em;
-}
-#sidebar .facet .label .count {
-	font-size: .8em;
-}
-#sidebar .facet .caption {
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	color: white;
-	padding: .2em .5em;
-	font-weight: bold;
-}
-#sidebar .facet .caption a {
-	color: white;
-	text-decoration: none;
-}
-
-#sidebar .facet .caption a:hover {
-	text-decoration: underline;
-}
-
-#sidebar .facet .labels {
-	padding: .5em;
-}
-
-/* @end */
-
 /* @group FacetColors */
 
 span.color {

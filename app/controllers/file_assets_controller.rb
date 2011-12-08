@@ -1,4 +1,4 @@
-class FileAssetsController < FassetsCore::AssetsController
+class FileAssetsController < AssetsController
   skip_before_filter :authenticate_user!, :only => [:thumb, :preview, :original]
 
   def thumb

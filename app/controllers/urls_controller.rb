@@ -1,4 +1,4 @@
-class UrlsController < FassetsCore::AssetsController
+class UrlsController < AssetsController
   def show
     redirect_to @content.url
   end

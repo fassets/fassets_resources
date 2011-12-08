@@ -65,14 +65,14 @@ class CatalogsController < FassetsCore::ApplicationController
   end
   def catalog_box
     if params[:id]
-      @catalog = FassetsCore::Catalog.find(params[:id])
+      @catalog = Catalog.find(params[:id])
     else
-      @catalog = FassetsCore::Catalog.first
+      @catalog = Catalog.first
     end
     @filter = LabelFilter.new(params[:filter])
     @assets = @catalog.assets.filter(@filter)
     @counts = 0
-    render :template => "fassets_core/catalogs/box", :layout => false, :locals => {:selected_catalog => @catalog.id}
+    render :template => "catalogs/box", :layout => false, :locals => {:selected_catalog => @catalog.id}
   end
   def box_content
     @filter = LabelFilter.new(params[:filter])

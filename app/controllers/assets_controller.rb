@@ -5,7 +5,7 @@ class AssetsController < FassetsCore::ApplicationController
 
   def new
     @content = self.content_model.new
-    render :template => 'fassets_core/assets/new'
+    render :template => 'assets/new'
   end
   def create
     logger.debug content_params

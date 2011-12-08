@@ -5,7 +5,7 @@ class FacetsController < FassetsCore::ApplicationController
   def new
   end
   def create
-    @facet = FassetsCore::Facet.new(params[:facet])
+    @facet = Facet.new(params[:facet])
     @facet.catalog_id = @catalog.id
     if @facet.save
       flash[:notice] = "Facet was successfully created."
@@ -44,7 +44,7 @@ class FacetsController < FassetsCore::ApplicationController
   end
   protected
   def find_catalog
-    @catalog = FassetsCore::Catalog.find(params[:catalog_id])
+    @catalog = Catalog.find(params[:catalog_id])
   end
 end
 

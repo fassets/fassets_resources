@@ -2,7 +2,7 @@ class LabelsController < FassetsCore::ApplicationController
   before_filter :authenticate_user!
   before_filter :find_label, :except => [:create, :sort]
   def create
-    @label = FassetsCore::Label.new(params[:label])
+    @label = Label.new(params[:label])
     @label.facet_id = params[:facet_id]
     if @label.save
       flash[:notice] = "Label was successfully created."
@@ -48,7 +48,7 @@ class LabelsController < FassetsCore::ApplicationController
   end
   protected
   def find_label
-    @label = FassetsCore::Label.find(params[:id])
+    @label = Label.find(params[:id])
   end
 end
 

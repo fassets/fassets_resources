@@ -7,6 +7,6 @@
     -facet.labels.each do |label|
       -if @counts[label.id] && !@filter.include?(label.id)
         %li.label
-          =link_to label.caption.gsub(' ', "&nbsp;"), catalog_path(@catalog, :filter => @filter.to_query_include(label.id))
+          =link_to label.caption, catalog_path(@catalog, :filter => @filter.to_query_include(label.id))
           -if @counts[label.id] > 1
             %span.count="#{@counts[label.id]}&#215"

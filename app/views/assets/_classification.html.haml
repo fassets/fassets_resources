@@ -26,7 +26,7 @@
                   -facet.labels.each do |label|
                     %li.label
                       =check_box_tag "labels[]", label.id, classification.label_ids.include?(label.id)
-                      =link_to label.caption.gsub(' ', "&nbsp;")
+                      =link_to label.caption
             =submit_tag "Save"
             =submit_tag "Drop", :style => "float: left", :onclick => "return confirm('Are you sure?')"
 

@@ -18,6 +18,10 @@ $(function(){
     titleQuery: "h2.title",
     startCollapsed: true
   });
+
+  $(".label > input[type=checkbox]").click(function() {
+    $(this).parents("form").submit();
+  });
 });
 
 /*$.ajax({

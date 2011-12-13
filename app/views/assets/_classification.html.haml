@@ -17,7 +17,7 @@
       %li
         =link_to classification.catalog.title, main_app.catalog_path(classification.catalog)
         .content
-          =form_for classification do |f|
+          =form_for classification, :remote => true do |f|
             -classification.catalog.facets.each do |facet|
               .facet{:class => "#{facet.color}_lite"}
                 .caption{:class => facet.color}

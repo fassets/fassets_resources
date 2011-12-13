@@ -12,8 +12,9 @@
   }
 
   .label {
-    display: inline;
+    display: inline-block;
     padding-right: .8em;
+    white-space: nowrap;
   
     .count {
       font-size: .8em;

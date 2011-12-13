@@ -39,7 +39,7 @@ $(document).ready(function(){
     }
    });
     var fancybox_links = function(){
-      $("#fancybox-content .facet_link, .clear_filter, .facet_drop_link").click(function(event){
+      $("#fancybox-content li.label, .clear_filter, .facet_drop_link").click(function(event){
         event.preventDefault();
         $.fancybox.showActivity();
         var catalog = $("#fancybox-content #selected").attr("catalog_id");

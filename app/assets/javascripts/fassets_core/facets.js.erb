@@ -22,6 +22,8 @@ $(function(){
   $(".label > input[type=checkbox]").click(function() {
     $(this).parents("form").submit();
   });
+  // hide the submit button if JS is enabled (form can be submited by checking the boxes)
+  $("form.edit_classification input[type=submit][value=Save]").hide();
 });
 
 /*$.ajax({

@@ -3,5 +3,5 @@
   =render :partial => "box_catalog_list", :locals => {:selected_catalog => selected_catalog}
 #box_content
   =render :partial => "box_content"
-#facets
-  =render :partial => "box_facet", :collection => @catalog.facets, :as => :facet
+#sidebar.fassets_core.box
+  =render :partial => "facet", :collection => @catalog.facets, :as => :facet

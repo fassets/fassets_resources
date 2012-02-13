@@ -1,5 +1,22 @@
 -if new
-  %p
-    %label{:for => 'file'} File:
-    =form.file_field :file
-    #file_warning
+  =content_for :head do
+    =stylesheet_link_tag "jquery-ui-theme_base.css" 
+    =javascript_include_tag "jquery.tmpl.min.js"
+    
+  #fileupload
+    =form_for :file_asset, :html => { :multipart => true } do |f|
+      .fileupload-buttonbar
+        %label.fileinput-button
+          %span
+            Add files...
+            =f.file_field :file
+        %button{:type=>"submit",:class=>"start"}Start upload
+        %button{:type=>"reset",:class=>"cancel"}Cancel upload
+        %button{:type=>"button",:class=>"delete"}Delete files
+    .fileupload-content
+      %table{:class=>"files"}
+      .fileupload-progressbar
+
+  =render :partial => "template-upload"
+  =render :partial => "template-download"
+  =render :partial => "fileupload_widget"

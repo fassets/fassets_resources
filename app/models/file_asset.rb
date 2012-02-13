@@ -1,6 +1,13 @@
 require "acts_as_asset"
+require 'carrierwave/processing/mime_types'
 
 class FileAsset < ActiveRecord::Base
+  attr_accessible :file, :content_type
+  include Rails.application.routes.url_helpers
+  #validates_presence_of :file
+  mount_uploader :file, FileUploader
+  before_save :save_content_type
+  
   MIME_2_MEDIA = {
     'image/jpeg' => 'image',
     'image/png' => 'image',
@@ -11,22 +18,25 @@ class FileAsset < ActiveRecord::Base
     'video/x-flv' => 'video'
   }
 
-  validates_attachment_presence :file
-
+  def save_content_type
+    self.content_type = file.file.content_type
+  end
+  
+  def to_jq_upload
+    {
+      "name" => read_attribute(:file),
+      "size" => file.size,
+      "url" => file.url,
+      "thumbnail_url" => file.thumb.url,
+      "delete_url" => file_asset_path(:id => id),
+      "delete_type" => "DELETE" 
+    }
+  end
   acts_as_asset
-  has_attached_file :file,
-    :url => "/uploads/:id/:style.:extension",
-    #:url => "/files/:id/:style.:extension",
-    :path => ":rails_root/public/uploads/:id/:style.:extension",
-    :styles => {
-    :thumb => "72x72#",
-    :small => "400x300>"
-  }
-  before_post_process :image?
 
   def media_type
-    MIME_2_MEDIA[file_content_type] || 'file'
-  end    
+    MIME_2_MEDIA[self.content_type] || 'file'
+  end  
   def file_updated_at
     Time.now
   end

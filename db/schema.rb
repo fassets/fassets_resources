@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 19) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "assets", :force => true do |t|
     t.string   "name"
@@ -43,12 +43,10 @@ ActiveRecord::Schema.define(:version => 19) do
   end
 
   create_table "file_assets", :force => true do |t|
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.integer  "file_width"
-    t.integer  "file_height"
-    t.datetime "file_updated_at"
+    t.string   "file"
+    t.string   "content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "frames", :force => true do |t|

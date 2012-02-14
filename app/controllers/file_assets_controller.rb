@@ -21,7 +21,6 @@ class FileAssetsController < AssetsController
   end
   def update
     @content = FileAsset.find(params[:id])
-
     respond_to do |format|
       if @content.asset.update_attributes(params[:asset])
         format.html { redirect_to @content, :notice => 'Picture was successfully updated.' }
@@ -31,6 +30,10 @@ class FileAssetsController < AssetsController
         format.json { render :json => @content.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  def edit_box
+    @content = FileAsset.find(params[:id])
+    render :template => 'assets/edit', :layout => false
   end
   def thumb
     redirect_to "/public/uploads/#{@content.id}/thumb.#{params[:format]}"

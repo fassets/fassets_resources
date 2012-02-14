@@ -8,7 +8,6 @@ class AssetsController < FassetsCore::ApplicationController
     render :template => 'assets/new'
   end
   def create
-    logger.debug content_params
     @content = self.content_model.new(content_params)
     @content.asset = Asset.create(:user => current_user, :name => params["asset"]["name"])
     if @content.save

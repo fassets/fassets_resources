@@ -28,6 +28,7 @@ class FileAsset < ActiveRecord::Base
       "size" => file.size,
       "url" => file.url,
       "thumbnail_url" => file.thumb.url,
+      "edit_box_url" => "/edit_box/"+id.to_s,
       "delete_url" => file_asset_path(:id => id),
       "delete_type" => "DELETE" 
     }

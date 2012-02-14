@@ -458,6 +458,9 @@
                 text: false,
                 icons: {primary: 'ui-icon-trash'}
             });
+            tmpl.find('.edit button').button({
+              text: "Edit",
+            });
             tmpl.find('a').each(this._enableDragToDesktop);
             return tmpl;
         },
@@ -494,6 +497,48 @@
                 dataType: e.data.fileupload.options.dataType
             });
         },
+        _editHandler: function (e) {
+            e.preventDefault();
+            var button = $(this);
+            $.fancybox.showActivity();
+            var f_width = $(window).width()*0.8;
+            var f_height = $(window).height()*0.8;
+//            $("#box_content").css("left",$("#catalog_list").width()+10);
+//            $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
+	          $.ajax({
+		          type		: "GET",
+		          cache	: false,
+		          url		: button.attr("edit-url"),
+		          success: function(data) {
+			          $.fancybox({
+                  content: data,
+                  padding: 0,
+                  autoDimensions: false,
+                  width: f_width,
+                  height: f_height
+                });
+//                $("#box_content").css("left",$("#catalog_list").width()+10);
+//                $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
+//                fancybox_links();
+                $.fancybox.resize();
+	              $("#fancybox-content .asset_submit_button").on("click",function(event){
+	                event.preventDefault();
+                  $.fancybox.showActivity();
+                  var asset_data = {asset: {name: $("#asset_name").val()}};
+                  var asset_id = $("#fancybox-content .asset_submit_button").attr("asset_id");
+	                $.ajax({
+		                type		: "PUT",
+		                cache	: false,
+		                data  : asset_data,
+		                url		: "/file_assets/"+asset_id,
+		                success: function(data) {
+		                    $.fancybox.close();
+		                }
+		              });
+	              });
+		          }
+	          });
+        },
         
         _initEventHandlers: function () {
             $.blueimp.fileupload.prototype._initEventHandlers.call(this);
@@ -517,6 +562,12 @@
                     eventData,
                     this._deleteHandler
                 );
+            filesList.find('.edit button')
+                .live(
+                    'click.' + this.options.namespace,
+                    eventData,
+                    this._editHandler
+                );
         },
         
         _destroyEventHandlers: function () {
@@ -526,6 +577,8 @@
             filesList.find('.cancel button')
                 .die('click.' + this.options.namespace);
             filesList.find('.delete button')
+                .die('click.' + this.options.namespace);
+            filesList.find('.edit button')
                 .die('click.' + this.options.namespace);
             $.blueimp.fileupload.prototype._destroyEventHandlers.call(this);
         },

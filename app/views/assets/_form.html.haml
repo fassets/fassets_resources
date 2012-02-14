@@ -7,5 +7,5 @@
       #name_warning
   =render :partial => "#{@content.class.to_s.underscore.pluralize}/form", :locals => {:new => new}, :object => f
   =render content_partial(@content, :preview)
-  =submit_tag(@content.new_record? ? "Create" : "Save")
+  =submit_tag(@content.new_record? ? "Create" : "Save",:class => "asset_submit_button",:asset_id => @content.asset.id)
 

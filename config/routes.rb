@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   match 'catalog_box' => 'Catalogs#catalog_box'
   match 'box_content' => 'Catalogs#box_content'
   match 'box_facet' => 'Catalogs#box_facet'
+  match 'edit_box/:id' => 'FileAssets#edit_box'
 
   root :to => "Catalogs#index"
 end

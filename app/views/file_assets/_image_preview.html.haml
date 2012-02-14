@@ -1,1 +1,1 @@
-=link_to image_tag(@content.file.url, :id => "asset_"+@content.asset.id.to_s,:alt => @content.asset.name, :class => "fit asset center"), @content.file.url(:medium), :class=> "zoom"
+=link_to image_tag(@content.file.url(:medium), :id => "asset_"+@content.asset.id.to_s,:alt => @content.asset.name, :class => "fit asset center"), @content.file.url, :class=> "zoom"

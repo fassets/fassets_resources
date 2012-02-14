@@ -7,6 +7,9 @@ class UpdateFileAssets < ActiveRecord::Migration
     remove_column :file_assets, :file_width
     remove_column :file_assets, :file_height
     rename_column :file_assets, :file_file_size, :file_size
+    add_column :file_assets, :author, :string
+    add_column :file_assets, :source, :string
+    add_column :file_assets, :license, :string
   end
 
   def self.down

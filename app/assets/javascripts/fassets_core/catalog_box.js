@@ -15,7 +15,8 @@ $(document).ready(function(){
           padding: 0,
           autoDimensions: false,
           width: f_width,
-          height: f_height
+          height: f_height,
+          onComplete: function(){$("#fancybox-content").attr("box_type","catalog");}
         });
         $("#box_content").css("left",$("#catalog_list").width()+10);
         $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
@@ -58,8 +59,10 @@ $(document).ready(function(){
         $.fancybox.hideActivity();
       });
     };
-  $(document).ajaxStop(function() { 
-    fancybox_links();
-    $.fancybox.resize();
+  $(document).ajaxStop(function() {
+    if($("#fancybox-content").attr("box_type") == "catalog"){ 
+      fancybox_links();
+      $.fancybox.resize();
+    }
   });
 });

@@ -2,11 +2,11 @@ require "acts_as_asset"
 require 'carrierwave/processing/mime_types'
 
 class FileAsset < ActiveRecord::Base
-  attr_accessible :file, :content_type
+  attr_accessible :file, :content_type, :author, :source, :license
   include Rails.application.routes.url_helpers
   #validates_presence_of :file
   mount_uploader :file, FileUploader
-  before_save :save_content_type
+  before_create :save_content_type
   
   MIME_2_MEDIA = {
     'image/jpeg' => 'image',

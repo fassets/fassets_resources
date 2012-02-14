@@ -22,8 +22,8 @@ class FileAssetsController < AssetsController
   def update
     @content = FileAsset.find(params[:id])
     respond_to do |format|
-      if @content.asset.update_attributes(params[:asset])
-        format.html { redirect_to @content, :notice => 'Picture was successfully updated.' }
+      if @content.asset.update_attributes(params[:asset]) and @content.update_attributes(params[:file_asset])
+        format.html { redirect_to @content, :notice => 'FileAsset was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

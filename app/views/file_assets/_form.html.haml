@@ -20,3 +20,13 @@
   =render :partial => "template-upload"
   =render :partial => "template-download"
   =render :partial => "fileupload_widget"
+-else
+  %p
+    %label{:for => 'author'} Author:
+    =text_field :file_asset, :author
+  %p
+    %label{:for => 'source'} Source:
+    =select :file_asset, :source, options_for_select(["YouTube","Flickr","Wikipedia","Other"]), {:include_blank => true}
+  %p
+    %label{:for => 'license'} License:
+    =text_field :file_asset, :license

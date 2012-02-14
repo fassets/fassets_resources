@@ -512,7 +512,7 @@
 		          success: function(data) {
 			          $.fancybox({
                   content: data,
-                  padding: 0,
+                  padding: 20,
                   autoDimensions: false,
                   width: f_width,
                   height: f_height
@@ -525,11 +525,16 @@
 	                event.preventDefault();
                   $.fancybox.showActivity();
                   var asset_data = {asset: {name: $("#asset_name").val()}};
+                  var f_author = $("#file_asset_author").val();
+                  var f_source = $("#file_asset_source").val();
+                  var f_license = $("#file_asset_license").val();
+                  var file_asset_data = {file_asset: {author: f_author, source: f_source, license: f_license}};
                   var asset_id = $("#fancybox-content .asset_submit_button").attr("asset_id");
+                  var data = {asset: {name: $("#asset_name").val()}, file_asset: {author: f_author, source: f_source, license: f_license}};
 	                $.ajax({
 		                type		: "PUT",
 		                cache	: false,
-		                data  : asset_data,
+		                data  : data,
 		                url		: "/file_assets/"+asset_id,
 		                success: function(data) {
 		                    $.fancybox.close();

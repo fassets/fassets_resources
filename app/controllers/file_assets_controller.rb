@@ -8,12 +8,16 @@ class FileAssetsController < AssetsController
   def create
     @content = FileAsset.new(params[:file_asset])
     @content.asset = Asset.create(:user => current_user, :name => @content.file.filename.to_s)
-
+    
     respond_to do |format|
       if @content.save
         classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
         classification.save
         format.json { render :json => [ @content.to_jq_upload ].to_json }
+        if params[:file_asset][:remote_file_url]
+          format.html { redirect_to @content, :notice => 'FileAsset was successfully updated.' }
+          format.json { head :ok }
+        end
       else
         format.json { render :json => [ @content.to_jq_upload.merge({ :error => "custom_failure" }) ].to_json }
       end
@@ -47,6 +51,10 @@ class FileAssetsController < AssetsController
   end
   def content_model
     return FileAsset
+  end
+  def new_remote_file
+    @content = FileAsset.new
+    render :template => 'file_assets/new_remote_file'
   end
 end
 

@@ -2,7 +2,7 @@ require "acts_as_asset"
 require 'carrierwave/processing/mime_types'
 
 class FileAsset < ActiveRecord::Base
-  attr_accessible :file, :content_type, :author, :source, :license
+  attr_accessible :file, :remote_file_url, :content_type, :author, :source, :license
   include Rails.application.routes.url_helpers
   #validates_presence_of :file
   mount_uploader :file, FileUploader

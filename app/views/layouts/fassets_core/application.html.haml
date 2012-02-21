@@ -12,6 +12,7 @@
       %ul#create_links
         %li=link_to "New URL", main_app.new_url_path
         %li=link_to "New File", main_app.new_file_asset_path
+        %li=link_to "New Remote File", main_app.new_remote_file_path
         =yield :create_asset_link
       %ol.sortable{:id => "users.#{current_user.id}.tray_positions.replace",:class => "sortable_tray"}
         -current_user.tray_positions.each do |tp|

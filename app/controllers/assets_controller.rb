@@ -1,7 +1,7 @@
 class AssetsController < FassetsCore::ApplicationController
   include AssetsHelper
   before_filter :authenticate_user!, :except => [:show]
-  before_filter :find_content, :except => [:new, :create, :preview, :markup_preview,:copy]
+  before_filter :find_content, :except => [:new, :new_remote_file, :create, :preview, :markup_preview,:copy]
 
   def new
     @content = self.content_model.new

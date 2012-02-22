@@ -1,3 +1,5 @@
+require 'wikipedia'
+
 class FileAssetsController < AssetsController
   skip_before_filter :authenticate_user!, :only => [:thumb, :preview, :original]
 
@@ -6,9 +8,13 @@ class FileAssetsController < AssetsController
     render :template => 'file_assets/new'
   end
   def create
+    if params[:remote_file_url]
+      file_asset_hash = {:file_asset => {:remote_file_url => params[:remote_file_url], :source => params[:source]}}
+      params.merge!(file_asset_hash)
+    end
+    logger.debug(params)
     @content = FileAsset.new(params[:file_asset])
     @content.asset = Asset.create(:user => current_user, :name => @content.file.filename.to_s)
-    
     respond_to do |format|
       if @content.save
         classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
@@ -55,6 +61,17 @@ class FileAssetsController < AssetsController
   def new_remote_file
     @content = FileAsset.new
     render :template => 'file_assets/new_remote_file'
+  end
+  def search_wiki_imgs
+    @content = FileAsset.new
+    page = Wikipedia.find(params[:file_asset][:search_key])
+    images = page.images
+    image_urls = page.image_urls
+    render :template => 'file_assets/search_wiki_imgs', :locals => {:search_key => params[:file_asset][:search_key], :image_urls => image_urls}
+  end
+  def get_wiki_imgs
+    @content = FileAsset.new
+    render :template => "file_assets/new_wiki_img"
   end
 end
 

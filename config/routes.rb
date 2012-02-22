@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   match 'box_facet' => 'Catalogs#box_facet'
   match 'edit_box/:id' => 'FileAssets#edit_box'
   match 'new_remote_file' => 'FileAssets#new_remote_file'
+  match 'get_wiki_imgs' => 'FileAssets#get_wiki_imgs'
+  match 'search_wiki_imgs' => 'FileAssets#search_wiki_imgs'
+  match 'add_wiki_img' => 'FileAssets#add_wiki_image'
 
   root :to => "Catalogs#index"
 end

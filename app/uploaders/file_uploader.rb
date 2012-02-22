@@ -1,11 +1,14 @@
 # encoding: utf-8
 
+require File.join(FassetsCore::Engine.root, "lib", "carrierwave", "ffmpeg")
+
 class FileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
+  include CarrierWave::FFMPEG
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -40,6 +43,10 @@ class FileUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [400, 400]
   end
 
+  version :flv, :if => :video? do
+    process :convert_to_flv
+  end
+  
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
@@ -52,12 +59,15 @@ class FileUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png avi flv)
   end
 
   protected
 
   def image?(new_file)
     new_file.content_type.include? 'image'
+  end
+  def video?(new_file)
+    new_file.content_type.include? 'video'
   end
 end

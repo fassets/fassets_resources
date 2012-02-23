@@ -14,4 +14,17 @@ $(document).ready(function(){
              url: "/" + $('.sortable_tray').attr('id').replace(/\./g,"/")})
     },
   });
+  $('#tray .drop_button').click(function(event){
+    event.preventDefault();
+    var user_id = $(event.target).attr("user_id");
+    var tp_id = $(event.target).attr("tp_id");
+    $.ajax({
+      type: 'DELETE',
+      cache	: false,
+      url		: "/users/"+user_id+"/tray_positions/"+tp_id,
+      success: function(data) {
+        $("#tray").load("/users/"+user_id+"/tray_positions/");
+      }
+    });
+  });
 });

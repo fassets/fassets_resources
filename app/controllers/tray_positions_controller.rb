@@ -11,6 +11,9 @@ class TrayPositionsController < FassetsCore::ApplicationController
     tp.save
     redirect_to :back
   end
+  def index
+    render :partial => "shared/tray"
+  end
   def destroy
     tp = TrayPosition.find(params[:id])
     tp.destroy()

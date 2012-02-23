@@ -1,3 +1,6 @@
+#asset_preview
+  =render content_partial(@content, :preview)
+
 =content_for :h1 do
   #type
     =@content.media_type.capitalize
@@ -7,4 +10,4 @@
       %span.action
         =link_to image_tag("fassets_core/edit.png"), edit_asset_content_path(@content)
         =render :partial => "assets/put_on_tray", :locals => {:current_user => current_user}
-=render content_partial(@content, :preview) 
+

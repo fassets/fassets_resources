@@ -21,7 +21,7 @@ class FileAssetsController < AssetsController
         classification.save
         format.json { render :json => [ @content.to_jq_upload ].to_json }
         if params[:file_asset][:remote_file_url]
-          format.html { redirect_to @content, :notice => 'FileAsset was successfully updated.' }
+          format.html { render :action => "edit", :locals => {:in_fancybox => false}, :notice => 'Remote File was successfully added.'}
           format.json { head :ok }
         end
       else
@@ -30,12 +30,16 @@ class FileAssetsController < AssetsController
     end
   end
   def update
-    @content = FileAsset.find(params[:id])
+    content_id = Asset.find(params[:id]).content_id
+    @content = FileAsset.find(content_id)
+    logger.debug("Content"+@content.to_s)
     respond_to do |format|
       if @content.asset.update_attributes(params[:asset]) and @content.update_attributes(params[:file_asset])
+        logger.debug("Succesfully updated attributes")
         format.html { redirect_to @content, :notice => 'FileAsset was successfully updated.' }
         format.json { head :ok }
       else
+        logger.debug("Failed !!!!!!!!!!!")
         format.html { render :action => "edit" }
         format.json { render :json => @content.errors, :status => :unprocessable_entity }
       end
@@ -43,7 +47,7 @@ class FileAssetsController < AssetsController
   end
   def edit_box
     @content = FileAsset.find(params[:id])
-    render :template => 'assets/edit', :layout => false
+    render :template => 'assets/edit', :layout => false, :locals => {:in_fancybox => true}
   end
   def thumb
     redirect_to "/public/uploads/#{@content.id}/thumb.#{params[:format]}"
@@ -64,10 +68,10 @@ class FileAssetsController < AssetsController
   end
   def search_wiki_imgs
     @content = FileAsset.new
-    page = Wikipedia.find(params[:file_asset][:search_key])
+    page = Wikipedia.find(params[:search_key])
     images = page.images
     image_urls = page.image_urls
-    render :template => 'file_assets/search_wiki_imgs', :locals => {:search_key => params[:file_asset][:search_key], :image_urls => image_urls}
+    render :partial => 'file_assets/search_wiki_imgs', :locals => {:search_key => params[:search_key], :image_urls => image_urls}
   end
   def get_wiki_imgs
     @content = FileAsset.new

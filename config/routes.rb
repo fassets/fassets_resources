@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   match 'get_wiki_imgs' => 'FileAssets#get_wiki_imgs'
   match 'search_wiki_imgs' => 'FileAssets#search_wiki_imgs'
   match 'add_wiki_img' => 'FileAssets#add_wiki_image'
+  match 'add_asset_box' => 'Assets#add_asset_box'
 
   root :to => "Catalogs#index"
 end

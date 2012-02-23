@@ -1,7 +1,7 @@
 class AssetsController < FassetsCore::ApplicationController
   include AssetsHelper
   before_filter :authenticate_user!, :except => [:show]
-  before_filter :find_content, :except => [:new, :new_remote_file, :create, :preview, :markup_preview,:copy, :get_wiki_imgs, :search_wiki_imgs]
+  before_filter :find_content, :except => [:new, :new_remote_file, :create, :preview, :markup_preview,:copy, :get_wiki_imgs, :search_wiki_imgs, :add_asset_box]
 
   def new
     @content = self.content_model.new
@@ -14,7 +14,8 @@ class AssetsController < FassetsCore::ApplicationController
       classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
       classification.save
       flash[:notice] = "Created new asset!"
-      redirect_to asset_content_path(@content) + "/edit"
+      #redirect_to asset_content_path(@content) + "/edit"
+      render :template => asset_content_path(@content) + "/edit", :locals => {:in_fancybox => false}
     else
       render :template => 'assets/new'
     end
@@ -23,7 +24,7 @@ class AssetsController < FassetsCore::ApplicationController
     render :template => 'assets/show'
   end
   def edit
-    render :template => 'assets/edit'
+    render :template => 'assets/edit', :locals => {:in_fancybox => false}
   end
   def update
     if @content.update_attributes(content_params) and @content.asset.update_attributes(params["asset"])
@@ -50,7 +51,14 @@ class AssetsController < FassetsCore::ApplicationController
   def content_model
     return Asset.find(params[:id]).content_type.constantize
   end
-
+  def add_asset_box
+    if params[:type] == "url"
+      @content = Url.new
+    else
+      @content = FileAsset.new
+    end
+    render :template => "assets/add_asset_box", :layout => false, :locals => {:selected_type => params[:type] ? params[:type] : "local"}
+  end
   protected
   def content_params
     field_name = self.content_model.to_s.underscore.gsub("/","_")

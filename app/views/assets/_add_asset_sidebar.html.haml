@@ -1,0 +1,9 @@
+%ul.asset_type_list
+  %li.asset_type
+    =link_to "Local File", "/add_asset_box?type=local", :id => selected_type == "local" ? "selected" : ""
+  %li.asset_type
+    =link_to "Remote File", "/add_asset_box?type=remote", :id => selected_type == "remote" ? "selected" : ""
+  %li.asset_type
+    =link_to "Wikipedia Image", "/add_asset_box?type=wikiimg", :id => selected_type == "wikiimg" ? "selected" : ""
+  %li.asset_type
+    =link_to "URL", "/add_asset_box?type=url", :id => selected_type == "url" ? "selected" : ""

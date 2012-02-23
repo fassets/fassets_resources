@@ -503,41 +503,32 @@
             $.fancybox.showActivity();
             var f_width = $(window).width()*0.8;
             var f_height = $(window).height()*0.8;
-//            $("#box_content").css("left",$("#catalog_list").width()+10);
-//            $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
 	          $.ajax({
 		          type		: "GET",
 		          cache	: false,
 		          url		: button.attr("edit-url"),
 		          success: function(data) {
-			          $.fancybox({
-                  content: data,
-                  padding: 20,
-                  autoDimensions: false,
-                  width: f_width,
-                  height: f_height
-                });
-//                $("#box_content").css("left",$("#catalog_list").width()+10);
-//                $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
-//                fancybox_links();
+                $("#edit_asset_content").html(data);
+                $.fancybox.hideActivity();
                 $.fancybox.resize();
 	              $("#fancybox-content .asset_submit_button").on("click",function(event){
 	                event.preventDefault();
                   $.fancybox.showActivity();
-                  var asset_data = {asset: {name: $("#asset_name").val()}};
-                  var f_author = $("#file_asset_author").val();
-                  var f_source = $("#file_asset_source").val();
-                  var f_license = $("#file_asset_license").val();
+                  var token = encodeURIComponent(AUTH_TOKEN) 
+                  var asset_data = {asset: {name: $("#fancybox-content #asset_name").val()}};
+                  var f_author = $("#fancybox-content #file_asset_author").val();
+                  var f_source = $("#fancybox-content #file_asset_source").val();
+                  var f_license = $("#fancybox-content #file_asset_license").val();
                   var file_asset_data = {file_asset: {author: f_author, source: f_source, license: f_license}};
                   var asset_id = $("#fancybox-content .asset_submit_button").attr("asset_id");
-                  var data = {asset: {name: $("#asset_name").val()}, file_asset: {author: f_author, source: f_source, license: f_license}};
+                  var data = {asset: {name: $("#fancybox-content #asset_name").val()}, file_asset: {author: f_author, source: f_source, license: f_license}, "authenticity_token": token, "asset_id": asset_id};
 	                $.ajax({
 		                type		: "PUT",
 		                cache	: false,
 		                data  : data,
 		                url		: "/file_assets/"+asset_id,
 		                success: function(data) {
-		                    $.fancybox.close();
+		                    $.fancybox.hideActivity();
 		                }
 		              });
 	              });
@@ -552,6 +543,7 @@
             filesList.find('.start button')
                 .live(
                     'click.' + this.options.namespace,
+                    
                     eventData,
                     this._startHandler
                 );

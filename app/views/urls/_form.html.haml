@@ -1,4 +1,14 @@
-%p
-  %label{:for => 'url'} URL:
-  =form.text_area :url, :rows => 3
-  #url_warning
+=form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
+  =fields_for "asset", @content.asset do |asset|
+    %p
+      %label{:for => 'name'} Name:
+      =asset.text_field :name
+      #name_warning
+    %p
+      %label{:for => 'catalog_id'} Catalog:
+      =select("classification", "catalog_id", Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
+  %p
+    %label{:for => 'url'} URL:
+    =text_field :url, :url
+    #url_warning
+  =submit_tag "Create"

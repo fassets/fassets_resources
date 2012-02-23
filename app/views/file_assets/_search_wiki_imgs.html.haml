@@ -1,0 +1,18 @@
+-content_for :h1 do
+  #type
+    Wikipedia
+  #name
+    Results for
+    =search_key
+  
+%ul.wiki_results
+  -image_urls.each do |image|
+    %li.wiki_img
+      =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
+        .wiki_image 
+          =image_tag(image, :width=>"200px", :height => "200px")
+          =hidden_field_tag :remote_file_url, image
+          =hidden_field_tag :source, "Wikipedia"
+        .wiki_actions
+          =select("classification", "catalog_id", Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
+          =submit_tag "Add"

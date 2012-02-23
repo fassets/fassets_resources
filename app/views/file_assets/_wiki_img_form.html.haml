@@ -1,0 +1,14 @@
+-content_for :h1 do
+  #type
+    =@content.class.to_s
+  #name
+    New
+
+#main.fassets_core
+  =form_for @content, :url => "/search_wiki_imgs",:html => {:multipart => true} do |f| 
+    =render :partial => "shared/error", :locals => {:target => @content}
+    %p
+      %label{:for => 'search_key'} Search for Images from:
+      =text_field :file_asset, :search_key
+    =submit_tag "Search", :class => "wiki_submit"
+

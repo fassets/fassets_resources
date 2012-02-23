@@ -10,9 +10,7 @@
   - if user_signed_in?
     =form_tag(main_app.replace_user_tray_positions_path(current_user), :id => "tray", :method => :put) do
       %ul#create_links
-        %li=link_to "New URL", main_app.new_url_path
-        %li=link_to "New File", main_app.new_file_asset_path
-        %li=link_to "New Remote File", main_app.new_remote_file_path
+        %li=link_to "New Assets", "", :id => "new_asset_link"
         =yield :create_asset_link
       %ol.sortable{:id => "users.#{current_user.id}.tray_positions.replace",:class => "sortable_tray"}
         -current_user.tray_positions.each do |tp|

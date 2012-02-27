@@ -29,6 +29,10 @@
   position: absolute;
   height: 100%;
 }
+#fancybox-content h1 {
+  border-top: none;
+  background-color: white;
+}
 #add_asset_content {
   position: relative;
   top: 5px;

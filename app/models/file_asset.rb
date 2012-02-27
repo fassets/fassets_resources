@@ -38,7 +38,11 @@ class FileAsset < ActiveRecord::Base
   acts_as_asset
 
   def media_type
-    MIME_2_MEDIA[self.content_type] || 'file'
+    if self.content_type
+      MIME_2_MEDIA[self.content_type] || 'file'
+    else
+      'file'
+    end
   end  
   def file_updated_at
     Time.now

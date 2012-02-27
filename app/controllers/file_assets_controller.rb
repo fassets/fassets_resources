@@ -12,7 +12,6 @@ class FileAssetsController < AssetsController
       file_asset_hash = {:file_asset => {:remote_file_url => params[:remote_file_url], :source => params[:source]}}
       params.merge!(file_asset_hash)
     end
-    logger.debug(params)
     @content = FileAsset.new(params[:file_asset])
     @content.asset = Asset.create(:user => current_user, :name => @content.file.filename.to_s)
     respond_to do |format|
@@ -35,11 +34,9 @@ class FileAssetsController < AssetsController
     logger.debug("Content"+@content.to_s)
     respond_to do |format|
       if @content.asset.update_attributes(params[:asset]) and @content.update_attributes(params[:file_asset])
-        logger.debug("Succesfully updated attributes")
-        format.html { redirect_to @content, :notice => 'FileAsset was successfully updated.' }
+        format.html { render :nothing => true}
         format.json { head :ok }
       else
-        logger.debug("Failed !!!!!!!!!!!")
         format.html { render :action => "edit" }
         format.json { render :json => @content.errors, :status => :unprocessable_entity }
       end
@@ -54,7 +51,6 @@ class FileAssetsController < AssetsController
   end
   def preview
     redirect_to "/public/uploads/#{@content.id}/small.#{params[:format]}"
-    #render :partial => @content.class.to_s.underscore.pluralize + "/" + @content.media_type.to_s.underscore + "_preview"
   end
   def original
     redirect_to "/public/uploads/#{@content.id}/original.#{params[:format]}"
@@ -68,8 +64,12 @@ class FileAssetsController < AssetsController
   end
   def search_wiki_imgs
     @content = FileAsset.new
+    Wikipedia.Configure {
+     domain 'en.wikipedia.org'
+     #domain 'commons.wikimedia.org'
+     path   'w/api.php'
+    }
     page = Wikipedia.find(params[:search_key])
-    images = page.images
     image_urls = page.image_urls
     render :partial => 'file_assets/search_wiki_imgs', :locals => {:search_key => params[:search_key], :image_urls => image_urls}
   end

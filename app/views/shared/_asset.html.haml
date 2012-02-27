@@ -7,7 +7,7 @@
   .asset_actions
     .action
       -if user_signed_in?
-        =button_to "Edit", asset_content_path(asset.content) + "/edit", :method => :get
+        =button_to "Edit", "", :method => :get ,:class => "edit_button", :asset_id => asset.id, :content_id => asset.content_id
         =#image_tag "fassets_core/drag.png", :width => 12, :height => 13, :class => "handle"
         -if tp
           =button_to "Drop", main_app.user_tray_position_path(current_user,tp.id), :method => :delete, :class => "drop_button",:tp_id => tp.id, :user_id => current_user.id

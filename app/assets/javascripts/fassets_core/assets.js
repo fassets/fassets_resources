@@ -1,6 +1,5 @@
 $(document).ready(function(){
   $(".asset").mouseenter(function(event){
-    //$(this).find(".asset_actions").show("slide", { direction: "left" }, 300);
     $(this).find(".asset_actions").fadeIn(150);
   });
   $(".asset").mouseleave(function(event){

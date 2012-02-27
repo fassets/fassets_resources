@@ -12,4 +12,5 @@
  *= require fassets_core/sidebar
  *= require fassets_core/filter
  *= require fassets_core/facet
+ *= require fassets_core/edit_box
 */

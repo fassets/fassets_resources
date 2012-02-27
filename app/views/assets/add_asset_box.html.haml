@@ -6,7 +6,9 @@
 #add_asset_content
   -if selected_type == "remote"
     =render :partial => @content.class.to_s.underscore.pluralize + "/remote_file_form", :locals => {:new => true}
+  -elsif selected_type == "local"
+    =render :partial => @content.class.to_s.underscore.pluralize + "/form", :locals => {:new => true}
   -elsif selected_type == "wikiimg"
     =render :partial => @content.class.to_s.underscore.pluralize + "/wiki_img_form", :locals => {:new => true}
   -else
-    =render :partial => @content.class.to_s.underscore.pluralize + "/form", :locals => {:new => true}
+    =render :template => "assets/new", :locals => {:new => true}

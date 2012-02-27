@@ -31,7 +31,8 @@ class FileAsset < ActiveRecord::Base
       "thumbnail_url" => file.thumb.url,
       "edit_box_url" => "/edit_box/"+id.to_s,
       "delete_url" => file_asset_path(:id => id),
-      "delete_type" => "DELETE" 
+      "delete_type" => "DELETE",
+      "content_type" => "FileAsset" 
     }
   end
   acts_as_asset

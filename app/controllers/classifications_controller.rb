@@ -5,24 +5,28 @@ class ClassificationsController < FassetsCore::ApplicationController
   respond_to :html, :js
 
   def create
-    classification = Classification.new(params[:classification])
+    if params[:asset_id]
+      classification = Classification.new(:asset_id => params[:asset_id],:catalog_id => params[:catalog_id])
+    else
+      classification = Classification.new(params[:classification])
+    end
     classification.save
-    redirect_to url_for(classification.asset.content) + "/edit"
+    render :nothing => true
   end
   def destroy
     @classification.destroy
-    redirect_to url_for(@classification.asset.content) + "/edit"
+    render :nothing => true
   end
   def update
     if params[:commit] == "Drop"
-      destroy()
+      @classification.destroy()
       return
     end
     @classification.label_ids = params[:labels]
     flash[:notice] = "Updated Classification"
     respond_with do |format|
       format.js
-      format.html { redirect_to :back }
+      format.html {}
     end
   end
 

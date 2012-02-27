@@ -1,4 +1,4 @@
--unless in_fancybox
+-unless new
   #asset_preview
     =render content_partial(@content, :preview)
 
@@ -9,8 +9,6 @@
       %label{:for => 'name'} Name:
       =asset.text_field :name
       #name_warning
-  -if in_fancybox
-    =#hidden_field_tag :authenticity_token, form_authenticity_token()
   =render :partial => "#{@content.class.to_s.underscore.pluralize}/form", :locals => {:new => new}, :object => f
-  =submit_tag(@content.new_record? ? "Create" : "Save",:class => "asset_submit_button",:asset_id => @content.asset.id)
+  =submit_tag(@content.new_record? ? "Create" : "Save",:class => "asset_submit_button",:asset_id => @content.asset.id,:asset_type => @content.asset.content_type, :content_id => @content.id)
 

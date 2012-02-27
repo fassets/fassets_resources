@@ -9,7 +9,7 @@ class TrayPositionsController < FassetsCore::ApplicationController
     tp = TrayPosition.new(params[:tray_position])
     tp.clipboard_type.capitalize! if tp.clipboard_type
     tp.save
-    redirect_to :back
+    #redirect_to :back
   end
   def index
     render :partial => "shared/tray"
@@ -17,7 +17,8 @@ class TrayPositionsController < FassetsCore::ApplicationController
   def destroy
     tp = TrayPosition.find(params[:id])
     tp.destroy()
-    redirect_to :back
+    render :nothing => true
+    #redirect_to :back
   end
   def replace
     respond_to do |format|
@@ -71,7 +72,7 @@ class TrayPositionsController < FassetsCore::ApplicationController
         end
       end
       format.html do
-        redirect_to :back
+        #redirect_to :back
       end
     end
   end

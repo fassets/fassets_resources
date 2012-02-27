@@ -55,14 +55,68 @@ $(document).ready(function(){
         $.fancybox.hideActivity();
       });
       $("#fancybox-content .wiki_submit").click(function(event){
-        $.fancybox.showActivity();
         event.preventDefault();
         $.fancybox.showActivity();
-        //var catalog = event.target.href.split("=")[1];
         var search_key = $("#file_asset_search_key").val();
         $("#fancybox-content #add_asset_content").load("/search_wiki_imgs?search_key="+search_key);
         $.fancybox.resize();;
         $.fancybox.hideActivity();
+      });
+      $("#fancybox-content .add_wiki_img").click(function(event){
+        event.preventDefault();
+        $.fancybox.showActivity();
+        $.post("/file_assets/", $(event.target).parent().parent().serialize(), function(data){
+          for(var key in data){ alert('key name: ' + key + ' value: ' + data[key]); }
+          $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type);
+        });
+        reload_tray();        
+        $.fancybox.resize();;
+        $.fancybox.hideActivity();
+      });
+      $("#fancybox-content .add_remote_file").click(function(event){
+        event.preventDefault();
+        $.fancybox.showActivity();
+        $.post("/file_assets/", $(event.target).parent().serialize(), function(data){
+          $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type, function(){adjust_links();});
+        });
+        reload_tray();        
+        $.fancybox.resize();;
+        $.fancybox.hideActivity();
+      });
+      $("#fancybox-content .create_url").click(function(event){
+        event.preventDefault();
+        $.fancybox.showActivity();
+        $.post("/urls/", $(event.target).parent().serialize(), function(data){
+          $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type);
+        });
+        reload_tray();        
+        $.fancybox.resize();;
+        $.fancybox.hideActivity();
+      });
+      $("#fancybox-content .asset_submit_button").click(function(event){
+        event.preventDefault();
+        $.fancybox.showActivity();
+        //var token = encodeURIComponent(AUTH_TOKEN)
+        var asset_type = $(event.target).attr("asset_type");
+        if (asset_type == "FileAsset"){
+          var asset_data = {asset: {name: $("#fancybox-content #asset_name").val()}};
+          var f_author = $("#fancybox-content #file_asset_author").val();
+          var f_source = $("#fancybox-content #file_asset_source").val();
+          var f_license = $("#fancybox-content #file_asset_license").val();
+          var file_asset_data = {file_asset: {author: f_author, source: f_source, license: f_license}};
+          var asset_id = $("#fancybox-content .asset_submit_button").attr("asset_id");
+          var content_id = $("#fancybox-content .asset_submit_button").attr("content_id");
+          var data = {asset: {name: $("#fancybox-content #asset_name").val()}, file_asset: {author: f_author, source: f_source, license: f_license}, "asset_id": asset_id};
+          $.post("/file_assets/"+asset_id, data);  
+        } 
+        if (asset_type == "Url"){
+          var asset_id = $("#fancybox-content .asset_submit_button").attr("asset_id");
+          var content_id = $("#fancybox-content .asset_submit_button").attr("content_id");
+          var data = {asset: {name: $("#fancybox-content #asset_name").val()}, url: {url: $("#fancybox-content #url_url").val()}};
+          $.post("/urls/"+asset_id, data);         
+        }
+        reload_tray();
+        $.fancybox.hideActivity();     
       });
     };
   $(document).ajaxStop(function() {
@@ -75,4 +129,22 @@ $(document).ready(function(){
     event.preventDefault();
     show_asset_box();
   });
+  var reload_tray = function() {
+    var user_id = $("#tray").attr("user_id");
+    $("#tray").load("/users/"+user_id+"/tray_positions/", function() {
+      $('#tray .drop_button').click(function(event){
+        event.preventDefault();
+        var user_id = $(event.target).attr("user_id");
+        var tp_id = $(event.target).attr("tp_id");
+        $.ajax({
+          type: 'DELETE',
+          cache	: false,
+          url		: "/users/"+user_id+"/tray_positions/"+tp_id,
+          success: function(data) {
+            $("#tray").load("/users/"+user_id+"/tray_positions/");
+          }
+        });
+      });
+    });
+  };
 });

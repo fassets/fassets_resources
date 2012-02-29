@@ -70,7 +70,7 @@ $(document).ready(function(){
         $.fancybox.resize();;
         $.fancybox.hideActivity();
       });
-
+      $("form.edit_classification input[type=submit][value=Save]").hide();
     };
   $(document).ajaxStop(function() {
     if($("#fancybox-content").attr("box_type") == "edit_asset"){ 

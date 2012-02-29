@@ -458,9 +458,9 @@
                 text: false,
                 icons: {primary: 'ui-icon-trash'}
             });
-            tmpl.find('.edit button').button({
-              text: "Edit",
-            });
+//            tmpl.find('.edit button').button({
+//              text: "Edit",
+//            });
             tmpl.find('a').each(this._enableDragToDesktop);
             return tmpl;
         },
@@ -508,7 +508,7 @@
 		          cache	: false,
 		          url		: button.attr("edit-url"),
 		          success: function(data) {
-                $("#edit_asset_content").html(data);
+                $("#add_asset_content").html(data);
                 $.fancybox.hideActivity();
                 $.fancybox.resize();
 	              $("#fancybox-content .asset_submit_button").on("click",function(event){
@@ -559,12 +559,12 @@
                     eventData,
                     this._deleteHandler
                 );
-            filesList.find('.edit button')
-                .live(
-                    'click.' + this.options.namespace,
-                    eventData,
-                    this._editHandler
-                );
+//            filesList.find('.edit button')
+//                .live(
+//                    'click.' + this.options.namespace,
+//                    eventData,
+//                    this._editHandler
+//                );
         },
         
         _destroyEventHandlers: function () {
@@ -575,8 +575,8 @@
                 .die('click.' + this.options.namespace);
             filesList.find('.delete button')
                 .die('click.' + this.options.namespace);
-            filesList.find('.edit button')
-                .die('click.' + this.options.namespace);
+//            filesList.find('.edit button')
+//                .die('click.' + this.options.namespace);
             $.blueimp.fileupload.prototype._destroyEventHandlers.call(this);
         },
 

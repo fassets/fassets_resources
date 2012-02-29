@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#sidebar .classification_create").click(function(event){
+    $("#sidebar .classification_create").live("click",function(event){
       event.preventDefault();
       $.fancybox.showActivity();
       var catalog_id = $("#fancybox-content #classification_catalog_id :selected").val();
@@ -15,8 +15,11 @@ $(document).ready(function(){
       $.fancybox.resize();;
       $.fancybox.hideActivity();
     });
-    $("#sidebar .classification_drop").click(function(event){
+    $("#sidebar .classification_drop").live("click",function(event){
       event.preventDefault();
+      if (confirm("Are you sure?") == false){
+        return;
+      };
       $.fancybox.showActivity();
       var classification_id = $(event.target).attr("classification_id");
       var asset_id = $("#fancybox-content #classification_asset_id").val();

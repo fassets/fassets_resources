@@ -1,5 +1,3 @@
-=javascript_include_tag "fassets_core/assets"
-=javascript_include_tag "fassets_core/tray"
 - if user_signed_in?
   =form_tag(main_app.replace_user_tray_positions_path(current_user), :user_id => current_user.id, :id => "tray", :method => :put) do
     %ul#create_links

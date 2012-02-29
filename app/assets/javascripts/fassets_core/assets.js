@@ -1,8 +1,8 @@
 $(document).ready(function(){
-  $(".asset").mouseenter(function(event){
+  $(".asset").live("mouseenter",function(event){
     $(this).find(".asset_actions").fadeIn(150);
   });
-  $(".asset").mouseleave(function(event){
+  $(".asset").live("mouseleave",function(event){
     $(this).find(".asset_actions").fadeOut(100);
-  });  
+  }); 
 });

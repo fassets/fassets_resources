@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
   $('#tray ol').sortable({
     items: 'li',
     connectWith: "ul",
@@ -14,7 +14,7 @@ $(document).ready(function(){
              url: "/" + $('.sortable_tray').attr('id').replace(/\./g,"/")})
     },
   });
-  $('#tray .drop_button').click(function(event){
+  $('#tray .drop_button').live("click",function(event){
     event.preventDefault();
     var user_id = $(event.target).attr("user_id");
     var tp_id = $(event.target).attr("tp_id");

@@ -22,7 +22,7 @@ $(document).ready(function(){
 		    }
 	    });
     };
-    $("body .edit_button").click(function(event){
+    $("body .edit_button").live("click",function(event){
       event.preventDefault();
       show_edit_box(event);
     });

@@ -6,18 +6,19 @@
         =@content.media_type.capitalize
       #action
         %span.action
-          =button_to "Delete", asset_content_path(@content), :method => :delete, :onclick => "return confirm('Are you sure?')"
+          =button_to "Delete", asset_content_path(@content), :method => :delete, :onclick => "return confirm('Are you sure?')", :class => "delete_asset_button"
           =render :partial => "assets/put_on_tray"
   #asset_preview
     =render content_partial(@content, :preview)
 
-=form_for @content, :url => asset_content_path(@content), :html => {:class => "fassets_core asset_form", :multipart => true} do |f|
-  =render :partial => "shared/error", :locals => {:target => @content}
-  =fields_for "asset", @content.asset do |asset|
-    %p
-      %label{:for => 'name'} Name:
-      =asset.text_field :name
-      #name_warning
-  =render :partial => "#{@content.class.to_s.underscore.pluralize}/form", :locals => {:new => new}, :object => f
-  =submit_tag(@content.new_record? ? "Create" : "Save",:class => "asset_submit_button",:asset_id => @content.asset.id,:asset_type => @content.asset.content_type, :content_id => @content.id)
+#asset_form
+  =form_for @content, :url => asset_content_path(@content), :html => {:class => "fassets_core asset_form", :multipart => true} do |f|
+    =render :partial => "shared/error", :locals => {:target => @content}
+    =fields_for "asset", @content.asset do |asset|
+      %p
+        %label{:for => 'name'} Name:
+        =asset.text_field :name
+        #name_warning
+    =render :partial => "#{@content.class.to_s.underscore.pluralize}/form", :locals => {:new => new}, :object => f
+    =submit_tag(@content.new_record? ? "Create" : "Save",:class => "asset_submit_button",:asset_id => @content.asset.id,:asset_type => @content.asset.content_type, :content_id => @content.id)
 

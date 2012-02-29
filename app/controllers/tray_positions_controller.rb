@@ -9,6 +9,7 @@ class TrayPositionsController < FassetsCore::ApplicationController
     tp = TrayPosition.new(params[:tray_position])
     tp.clipboard_type.capitalize! if tp.clipboard_type
     tp.save
+    render :nothing => true
     #redirect_to :back
   end
   def index

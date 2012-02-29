@@ -26,6 +26,13 @@
     #action {
       float: left;
       margin-top: 5px;
+      width: 150px;
+      .delete_asset_button {
+        float: left;
+      }
+      .put_on_tray_button {
+        float: left;
+      }
     }
   }
 }
@@ -40,4 +47,10 @@
   img {
     border: 2px solid silver;
   }
+}
+#asset_form{
+  width: 50%;
+  height: 50%;
+  padding-right: 10px;
+  float: left;
 }

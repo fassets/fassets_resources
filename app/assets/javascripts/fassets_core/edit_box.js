@@ -73,8 +73,7 @@ $(document).ready(function(){
 
     };
   $(document).ajaxStop(function() {
-    if($("#fancybox-content").attr("box_type") == "edit_asset"){
-      //("#fancybox-content button").off("click"); 
+    if($("#fancybox-content").attr("box_type") == "edit_asset"){ 
       adjust_links();
     }
   });

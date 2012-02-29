@@ -7,7 +7,7 @@
   .classification_form {
     margin-bottom: 1em;
     margin-right: .5em;
-    height: 65px;
+    height: 95px;
     background-color: #888888;
     border: 2px solid #777777;
     border-radius: 5px;
@@ -20,15 +20,10 @@
       text-shadow: 1px 1px #777777;
     }
     #classification_catalog_id {
-      position: relative;
-      top: 0px;
-      left: 5px;
-      float: left;
+      margin-left: 0.5em;
     }
     .classification_create {
-      position: relative;
-      top: -10px;
-      left: 20px;
+      margin-left: 0.5em;
     }
   }
   .classification_sidebar {

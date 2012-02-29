@@ -53,5 +53,17 @@ class FileAsset < ActiveRecord::Base
   def image?
     !(file_content_type =~ /^image.*/).nil?
   end
+  def image_width_preview
+    image ||= MiniMagick::Image.open(file.medium.path)['width']
+  end
+  def image_height_preview
+    image ||= MiniMagick::Image.open(file.medium.path)['height']
+  end
+  def image_width
+    image ||= MiniMagick::Image.open(file.path)['width']
+  end
+  def image_height
+    image ||= MiniMagick::Image.open(file.path)['height']
+  end
 end
 

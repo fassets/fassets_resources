@@ -44,7 +44,12 @@ class FileAssetsController < AssetsController
   end
   def edit_box
     @content = FileAsset.find(params[:id])
-    render :template => 'assets/edit', :layout => false, :locals => {:in_fancybox => true}
+    if params["_"]
+      new = true
+    else
+      new = false
+    end
+    render :template => 'assets/edit', :layout => false, :locals => {:new => new}
   end
   def thumb
     redirect_to "/public/uploads/#{@content.id}/thumb.#{params[:format]}"

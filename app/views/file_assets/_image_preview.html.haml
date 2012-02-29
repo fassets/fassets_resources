@@ -1,2 +1,1 @@
-#asset_preview
-  =link_to image_tag(@content.file_url(:medium), :id => "asset_"+@content.asset.id.to_s,:alt => @content.asset.name, :class => "fit asset center"), @content.file_url, :class=> "zoom"
+=link_to image_tag(@content.file_url(:medium), :id => "asset_"+@content.asset.id.to_s,:alt => @content.asset.name, :class => "fit asset center", :width => @content.image_width_preview, :height => @content.image_height_preview), @content.file_url, :class=> "zoom"

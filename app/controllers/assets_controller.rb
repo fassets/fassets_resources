@@ -65,6 +65,11 @@ class AssetsController < FassetsCore::ApplicationController
     render :partial => "assets/classification"
   end
   def edit_box
+    if params["_"]
+      new_asset = true
+    else
+      new_asset = false
+    end
     if params[:type] == "FileAsset"
       @content = FileAsset.find(params[:id])
     elsif params[:type] == "Url"
@@ -72,7 +77,7 @@ class AssetsController < FassetsCore::ApplicationController
     else
       @content = FileAsset.find(params[:id])
     end
-    render :template => 'assets/edit', :layout => false, :locals => {:in_fancybox => true}
+    render :template => 'assets/edit', :layout => false, :locals => {:new => new_asset}
   end
   protected
   def content_params

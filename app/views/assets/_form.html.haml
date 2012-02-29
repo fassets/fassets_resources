@@ -1,4 +1,13 @@
 -unless new
+  #edit_header
+    #content
+      #messages
+      #type
+        =@content.media_type.capitalize
+      #action
+        %span.action
+          =button_to "Delete", asset_content_path(@content), :method => :delete, :onclick => "return confirm('Are you sure?')"
+          =render :partial => "assets/put_on_tray"
   #asset_preview
     =render content_partial(@content, :preview)
 

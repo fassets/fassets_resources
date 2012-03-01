@@ -8,6 +8,7 @@
         %span.action
           =button_to "Delete", asset_content_path(@content), :method => :delete, :onclick => "return confirm('Are you sure?')", :class => "delete_asset_button"
           =render :partial => "assets/put_on_tray"
+          =render :partial => "#{@content.class.to_s.underscore.pluralize}/actions" rescue nil
   #asset_preview
     =render content_partial(@content, :preview)
 

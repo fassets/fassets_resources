@@ -1,9 +1,21 @@
 %ul.asset_type_list
   %li.asset_type
-    =link_to "Local File", "/add_asset_box?type=local", :id => selected_type == "local" ? "selected" : ""
+    .item
+      =link_to "Local File", "/add_asset_box?type=local", :id => selected_type == "local" ? "selected" : ""
   %li.asset_type
-    =link_to "Remote File", "/add_asset_box?type=remote", :id => selected_type == "remote" ? "selected" : ""
+    .item
+      =link_to "Remote File", "/add_asset_box?type=remote", :id => selected_type == "remote" ? "selected" : ""
   %li.asset_type
-    =link_to "Wikipedia Image", "/add_asset_box?type=wikiimg", :id => selected_type == "wikiimg" ? "selected" : ""
+    .item
+      =link_to "Wikipedia Image", "/add_asset_box?type=wikiimg", :id => selected_type == "wikiimg" ? "selected" : ""
   %li.asset_type
-    =link_to "URL", "/add_asset_box?type=url", :id => selected_type == "url" ? "selected" : ""
+    .item
+      =link_to "URL", "/add_asset_box?type=url", :id => selected_type == "url" ? "selected" : ""
+  -if defined? fassets_presentations_path
+    %li.asset_type
+      .item
+        =link_to "Presentation", "/add_asset_box?type=presentation", :id => selected_type == "presentation" ? "selected" : ""
+  -if defined? codes_path
+    %li.asset_type
+      .item
+        =link_to "Code", "/add_asset_box?type=code", :id => selected_type == "code" ? "selected" : ""

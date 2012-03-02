@@ -26,7 +26,7 @@
     #action {
       float: left;
       margin-top: 5px;
-      width: 150px;
+      width: 70%;
       .delete_asset_button {
         float: left;
       }
@@ -41,6 +41,8 @@
   margin-top: 50px;
   margin-bottom: 1em;
   margin-right: .5em;
+  max-width: 400px;
+  overflow: auto;
   background-color: #888888;
   border: 2px solid #777777;
   border-radius: 5px;

@@ -4,8 +4,6 @@
       %label{:for => 'url'} URL:
       =text_field :url, :url, :value => @content.url
       #url_warning
-    -if new
-      =submit_tag "Create", :class => "create_url"
 -else
   %p
     %label{:for => 'url'} URL:

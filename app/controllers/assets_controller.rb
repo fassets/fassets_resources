@@ -15,7 +15,12 @@ class AssetsController < FassetsCore::ApplicationController
         classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
         classification.save
         flash[:notice] = "Created new asset!"
-        format.json { render :json => [ @content.to_jq_upload ].to_json }
+        if @content.asset.content_type == "Code"
+          data = {:edit_box_url => "/edit_box/"+@content.id.to_s, :content_type => "Code"}
+          format.json { render :json => [ data ].to_json }
+        else
+          format.json { render :json => [ @content.to_jq_upload ].to_json }
+        end
       else
         render :template => 'assets/new'
       end
@@ -55,6 +60,10 @@ class AssetsController < FassetsCore::ApplicationController
   def add_asset_box
     if params[:type] == "url"
       @content = Url.new
+    elsif params[:type] == "presentation"
+      @content = FassetsPresentations::Presentation.new
+    elsif params[:type] == "code"
+      @content = FassetsCodeAssets::Code.new
     else
       @content = FileAsset.new
     end
@@ -74,6 +83,10 @@ class AssetsController < FassetsCore::ApplicationController
       @content = FileAsset.find(params[:id])
     elsif params[:type] == "Url"
       @content = Url.find(params[:id])
+    elsif params[:type] == "Presentation"
+      @content = FassetsPresentations::Presentation.find(params[:id])
+    elsif params[:type] == "Code"
+      @content = FassetsCodeAssets::Code.find(params[:id])
     else
       @content = FileAsset.find(params[:id])
     end

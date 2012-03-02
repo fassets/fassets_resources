@@ -83,10 +83,11 @@ $(document).ready(function(){
         $.fancybox.resize();;
         $.fancybox.hideActivity();
       });
-      $("#fancybox-content .create_url").click(function(event){
+      $("#fancybox-content .asset_create_button").click(function(event){
         event.preventDefault();
         $.fancybox.showActivity();
-        $.post("/urls/", $(event.target).parent().serialize(), function(data){
+        var action = $("#add_asset_content form").attr("action");
+        $.post(action, $("#add_asset_content form").serialize(), function(data){
           $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type);
         });
         reload_tray();        
@@ -118,6 +119,7 @@ $(document).ready(function(){
         reload_tray();
         $.fancybox.hideActivity();     
       });
+      $("form.edit_classification input[type=submit][value=Save]").hide();
     };
   $(document).ajaxStop(function() {
     if($("#fancybox-content").attr("box_type") == "add_asset"){ 

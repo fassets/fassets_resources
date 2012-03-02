@@ -63,7 +63,7 @@ class AssetsController < FassetsCore::ApplicationController
     elsif params[:type] == "presentation"
       @content = FassetsPresentations::Presentation.new
     elsif params[:type] == "code"
-      @content = FassetsCodeAssets::Code.new
+      @content = Code.new
     else
       @content = FileAsset.new
     end
@@ -86,7 +86,8 @@ class AssetsController < FassetsCore::ApplicationController
     elsif params[:type] == "Presentation"
       @content = FassetsPresentations::Presentation.find(params[:id])
     elsif params[:type] == "Code"
-      @content = FassetsCodeAssets::Code.find(params[:id])
+      #@content = FassetsCodeAssets::Code.find(params[:id])
+      @content = Code.find(params[:id])
     else
       @content = FileAsset.find(params[:id])
     end

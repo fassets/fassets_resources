@@ -16,7 +16,8 @@ class FileAsset < ActiveRecord::Base
     'image/svg+xml' => 'image',
     'video/flv' => 'video',
     'video/x-flv' => 'video',
-    'video/x-msvideo' => 'video'
+    'video/x-msvideo' => 'video',
+    'video/mpeg' => 'video'
   }
 
   def save_content_type

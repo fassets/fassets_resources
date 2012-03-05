@@ -58,12 +58,13 @@ class FileUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  
   def extension_white_list
-    %w(jpg jpeg gif png avi flv)
+    %w(jpg jpeg gif png svg avi flv mpg mpeg)
   end
 
   protected
-
+  
   def image?(new_file)
     new_file.content_type.include? 'image'
   end

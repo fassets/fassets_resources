@@ -16,8 +16,9 @@ class FileAssetsController < AssetsController
     @content.asset = Asset.create(:user => current_user, :name => @content.file.filename.to_s)
     respond_to do |format|
       if @content.save
-        classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
-        classification.save
+        @classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
+        @classification.save
+        create_content_labeling(@content.asset.id, params["classification"]["catalog_id"])
         format.json { render :json => [ @content.to_jq_upload ].to_json }
         if params[:file_asset][:remote_file_url]
           format.html { render :action => "edit", :locals => {:in_fancybox => false}, :notice => 'Remote File was successfully added.'}
@@ -81,6 +82,33 @@ class FileAssetsController < AssetsController
   def get_wiki_imgs
     @content = FileAsset.new
     render :template => "file_assets/new_wiki_img"
+  end
+  def create_content_labeling(asset_id,catalog_id)
+    asset = Asset.find(asset_id)
+    content_facet = Facet.where(:catalog_id => catalog_id, :caption => "Content Type").first
+    content_facet.labels.each do |label|
+      if asset.content_type == "FileAsset"
+        if label.caption.downcase == asset.content.media_type
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      elsif asset.content_type == "Url"
+        if label.caption == "Url"
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      elsif asset.content_type == "Code"
+        if label.caption == "Code"
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      elsif asset.content_type == "FassetsPresentations::Presentation"
+        if label.caption == "Presentation"
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      end
+    end
   end
 end
 

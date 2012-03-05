@@ -12,8 +12,9 @@ class AssetsController < FassetsCore::ApplicationController
     @content.asset = Asset.create(:user => current_user, :name => params["asset"]["name"])
     respond_to do |format|
       if @content.save
-        classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
-        classification.save
+        @classification = Classification.new(:catalog_id => params["classification"]["catalog_id"],:asset_id => @content.asset.id)
+        @classification.save
+        create_content_labeling(@content.asset.id, params["classification"]["catalog_id"])
         flash[:notice] = "Created new asset!"
         if @content.asset.content_type == "Code"
           data = {:edit_box_url => "/edit_box/"+@content.id.to_s, :content_type => "Code"}
@@ -110,6 +111,33 @@ class AssetsController < FassetsCore::ApplicationController
   rescue ActiveRecord::RecordNotFound => e
     flash[:error] = "#{self.content_model.to_s} with id #{params[:id]} not found"
     redirect_to root_url
+  end
+  def create_content_labeling(asset_id,catalog_id)
+    asset = Asset.find(asset_id)
+    content_facet = Facet.where(:catalog_id => catalog_id, :caption => "Content Type").first
+    content_facet.labels.each do |label|
+      if asset.content_type == "FileAsset"
+        if label.caption.downcase == asset.content.media_type
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      elsif asset.content_type == "Url"
+        if label.caption == "Url"
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      elsif asset.content_type == "Code"
+        if label.caption == "Code"
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      elsif asset.content_type == "FassetsPresentations::Presentation"
+        if label.caption == "Presentation"
+          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
+          labeling.save
+        end
+      end
+    end
   end
 end
 

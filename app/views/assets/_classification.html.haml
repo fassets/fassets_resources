@@ -15,7 +15,7 @@
       -catalogs << classification.catalog_id
       %li.classification
         .content
-          =form_for classification, :remote => true , :url => main_app.classifications_path(classification) do |f|
+          =form_for classification, :remote => true , :url => main_app.classification_path(classification) do |f|
             .classification_header
               =link_to classification.catalog.title, main_app.catalog_path(classification.catalog), :class => "classification_title"
               =submit_tag "Drop", :class => "classification_drop", :classification_id => classification.id

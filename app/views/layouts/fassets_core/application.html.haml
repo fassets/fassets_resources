@@ -1,7 +1,7 @@
 - content_for :head do
   =stylesheet_link_tag 'fassets_core/application'
   =javascript_include_tag 'fassets_core/application'
-  =yield :head
+  =yield :core_head
 
 - content_for :catalogs_selector do
   =collection_select :catalog, :id, Catalog.all, :id, :title, options ={:prompt => "Catalogs ..."},  :onchange => "javascript:window.location= '/catalogs/' + this.value"

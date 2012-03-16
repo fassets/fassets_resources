@@ -91,11 +91,6 @@ class CatalogsController < FassetsCore::ApplicationController
     facet = Facet.new(:caption => "Content Type", :color => "orange", :label_order => "value ASC, caption ASC")
     facet.catalog_id = @catalog.id
     facet.save
-    types = ["Image","Video","File","Code","Url","Presentation"]
-    types.each do |type|
-      label = Label.new(:caption => type, :facet_id => facet.id)
-      label.save
-    end
   end
   def find_catalog
     @catalog = Catalog.find(params[:id])

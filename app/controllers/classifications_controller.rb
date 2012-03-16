@@ -36,29 +36,14 @@ class ClassificationsController < FassetsCore::ApplicationController
   def create_content_labeling(asset_id,catalog_id)
     asset = Asset.find(asset_id)
     content_facet = Facet.where(:catalog_id => catalog_id, :caption => "Content Type").first
-    content_facet.labels.each do |label|
-      if asset.content_type == "FileAsset"
-        if label.caption.downcase == asset.content.media_type
-          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
-          labeling.save
-        end
-      elsif asset.content_type == "Url"
-        if label.caption == "Url"
-          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
-          labeling.save
-        end
-      elsif asset.content_type == "Code"
-        if label.caption == "Code"
-          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
-          labeling.save
-        end
-      elsif asset.content_type == "FassetsPresentations::Presentation"
-        if label.caption == "Presentation"
-          labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)
-          labeling.save
-        end
-      end
+    media_type = asset.content.media_type.capitalize
+    label = Label.where(:facet_id => content_facet.id, :caption => media_type.to_s).first
+    unless label
+      label = Label.new(:facet_id => content_facet.id, :caption => media_type.to_s)
+      label.save
     end
+    labeling = Labeling.new(:classification_id => @classification.id, :label_id => label.id)  
+    labeling.save
   end
   
   def find_classification

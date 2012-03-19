@@ -36,6 +36,9 @@ class ClassificationsController < FassetsCore::ApplicationController
   def create_content_labeling(asset_id,catalog_id)
     asset = Asset.find(asset_id)
     content_facet = Facet.where(:catalog_id => catalog_id, :caption => "Content Type").first
+    unless content_facet
+      content_facet = Facet.create(:caption => "Content Type", :color => "orange", :label_order => "value ASC, caption ASC", :catalog_id => catalog_id)
+    end
     media_type = asset.content.media_type.capitalize
     label = Label.where(:facet_id => content_facet.id, :caption => media_type.to_s).first
     unless label

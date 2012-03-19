@@ -56,7 +56,12 @@ class FileAssetsController < AssetsController
     redirect_to "/public/uploads/#{@content.id}/thumb.#{params[:format]}"
   end
   def preview
-    redirect_to "/public/uploads/#{@content.id}/small.#{params[:format]}"
+    @content = Asset.find(params[:id]).content
+    if @content.media_type == "video"
+      render :template => 'file_assets/video_player', :layout => false
+    else
+      redirect_to @content.file_url
+    end
   end
   def original
     redirect_to "/public/uploads/#{@content.id}/original.#{params[:format]}"

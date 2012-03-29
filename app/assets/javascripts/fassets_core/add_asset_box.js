@@ -37,6 +37,7 @@ $(document).ready(function(){
       activeObj = document.activeElement;
       if (activeObj.type == "textarea") break;
       if (activeObj.type == "text") break;
+      if ($(activeObj).attr("class").indexOf("slot") != -1) break;
       if ($("#fancybox-wrap").is(":visible")) {
         $.fancybox.close();
       } else {

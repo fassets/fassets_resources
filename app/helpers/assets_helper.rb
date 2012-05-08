@@ -5,8 +5,13 @@ module AssetsHelper
 
   # construct the path for the assets content
   def asset_content_path(content)
-    class_name = content.class.to_s.split("::").last
-    "#{main_app.root_path}#{class_name.underscore.pluralize}/#{content.id.to_s}"
+    begin
+      return url_for content
+    rescue NoMethodError
+      # it’s fine, if this fails this means, the engine should know about the url
+    end
+    engine = content.class.to_s.split("::").first + "::Engine"
+    send(engine.constantize.engine_name).url_for content
   end
   def edit_asset_content_path(content)
     asset_content_path(content) + "/edit"

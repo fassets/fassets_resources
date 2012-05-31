@@ -1,4 +1,4 @@
-%li.asset{:id => tp ? "tp_#{tp.id}" : "asset_#{asset.id}", :rel => tp ? asset.id : nil, :asset_id => asset ? asset.id: nil}
+%li.asset{:id => tp ? "tp_#{tp.id}" : "asset_#{asset.id}", :rel => tp ? asset.id : nil, :data => { 'asset-id' => asset ? asset.id: nil}}
   .asset_content
     .icon
       =render :partial => content_partial(asset.content, :icon), :locals => {:content => asset.content}
@@ -7,10 +7,10 @@
   .asset_actions
     .action
       -if user_signed_in?
-        =button_to "Edit", "", :method => :get ,:class => "edit_button", :asset_id => asset.id, :content_id => asset.content_id
+        =button_to "Edit", "", :method => :get ,:class => "edit_button", :data => {:asset_id => asset.id, :content_id => asset.content_id}
         =#image_tag "fassets_core/drag.png", :width => 12, :height => 13, :class => "handle"
         -if tp
-          =button_to "Drop", main_app.user_tray_position_path(current_user,tp.id), :method => :delete, :class => "drop_button",:tp_id => tp.id, :user_id => current_user.id
+          =button_to "Drop", main_app.user_tray_position_path(current_user,tp.id), :method => :delete, :class => "drop_button", :data => {:tp_id => tp.id, :user_id => current_user.id}
         -else
           -@content = asset.content
           =render :partial => "assets/put_on_tray", :locals => {}

@@ -4,7 +4,7 @@
     =select("classification", "catalog_id", Catalog.all.map {|c| [ c.title, c.id ] })
     =f.hidden_field :asset_id
     =submit_tag "Add"
-  
+
 %ul.collection{:class => "drawers"}
   -asset.classifications.each do |classification|
     %h2.title=classification.catalog.title

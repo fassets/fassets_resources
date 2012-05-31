@@ -4,12 +4,12 @@
   #name
     Results for
     =search_key
-  
+
 %ul.wiki_results
   -image_urls.each_with_index do |image_url, idx|
     %li.wiki_img
       =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
-        .wiki_image 
+        .wiki_image
           =image_tag(image_url, :width=>"200px", :height => "200px")
           =hidden_field_tag :remote_file_url, image_url
           =hidden_field_tag :source, "Wikipedia"

@@ -2,10 +2,10 @@
     $(function () {
         // Initialize the jQuery File Upload widget:
         $('#fileupload').fileupload();
-        // 
+        //
         // Load existing files:
         $.getJSON($('#fileupload form').prop('action'), function (files) {
-          var fu = $('#fileupload').data('fileupload'), 
+          var fu = $('#fileupload').data('fileupload'),
             template;
           fu._adjustMaxNumberOfFiles(-files.length);
           template = fu._renderDownload(files)

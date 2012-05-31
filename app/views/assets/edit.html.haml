@@ -7,7 +7,7 @@
     %span.action
       =button_to "Delete", asset_content_path(@content), :method => :delete, :onclick => "return confirm('Are you sure?')"
       =render :partial => "assets/put_on_tray"
-      
+
 #sidebar.fassets_core
   =render :partial => "assets/classification", :locals => {:asset => @content.asset}
   =render :partial => "#{@content.class.to_s.underscore.pluralize}/sidebar"

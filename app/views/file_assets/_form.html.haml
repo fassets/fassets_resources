@@ -1,15 +1,15 @@
 -if new
   #file_asset_form
-    =stylesheet_link_tag "jquery-ui-theme_base.css" 
+    =stylesheet_link_tag "jquery-ui-theme_base.css"
     =javascript_include_tag "jquery.tmpl.min.js"
 
-    =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f| 
+    =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
       //=fields_for "#{@content.class.to_s.underscore}" do |asset|
       =render :partial => "shared/error", :locals => {:target => @content}
       %p
         %label{:for => 'catalog_id'} Catalog:
         =select("classification", "catalog_id", Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
-            
+
       #fileupload
         =form_for :file_asset, :html => { :multipart => true } do |f|
           .fileupload-buttonbar

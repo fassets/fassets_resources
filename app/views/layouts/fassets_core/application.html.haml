@@ -4,7 +4,11 @@
   =yield :core_head
 
 - content_for :catalogs_selector do
-  =collection_select :catalog, :id, Catalog.all, :id, :title, options ={:prompt => "Catalogs ..."},  :onchange => "javascript:window.location= '/catalogs/' + this.value"
+  =collection_select :catalog,
+    :id, Catalog.all,
+    :id, :title,
+    options ={:prompt => "Catalogs ..."},
+    :onchange => "javascript:window.location= '/catalogs/' + this.value"
 
 - content_for :tray do
   =render :partial => "shared/tray"

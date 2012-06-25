@@ -22,6 +22,7 @@ class AssetsController < FassetsCore::ApplicationController
         else
           format.json { render :json => [ @content.to_jq_upload ].to_json }
         end
+        format.html { redirect_to edit_asset_content_path(@content) }
       else
         render :template => 'assets/new'
       end

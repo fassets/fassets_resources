@@ -42,7 +42,7 @@ $(document).ready(function(){
         $.fancybox.close();
       } else {
         show_asset_box();
-      }      
+      }
       break;
     }
    });
@@ -70,7 +70,7 @@ $(document).ready(function(){
           for(var key in data){ alert('key name: ' + key + ' value: ' + data[key]); }
           $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type);
         });
-        reload_tray();        
+        reload_tray();
         $.fancybox.resize();;
         $.fancybox.hideActivity();
       });
@@ -80,7 +80,7 @@ $(document).ready(function(){
         $.post("/file_assets/", $(event.target).parent().serialize(), function(data){
           $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type, function(){adjust_links();});
         });
-        reload_tray();        
+        reload_tray();
         $.fancybox.resize();;
         $.fancybox.hideActivity();
       });
@@ -91,7 +91,7 @@ $(document).ready(function(){
         $.post(action, $("#add_asset_content form").serialize(), function(data){
           $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type);
         });
-        reload_tray();        
+        reload_tray();
         $.fancybox.resize();;
         $.fancybox.hideActivity();
       });
@@ -109,16 +109,16 @@ $(document).ready(function(){
           var asset_id = $("#fancybox-content .asset_submit_button").data("asset-id");
           var content_id = $("#fancybox-content .asset_submit_button").data("content-id");
           var data = {asset: {name: $("#fancybox-content #asset_name").val()}, file_asset: {author: f_author, source: f_source, license: f_license}, "asset_id": asset_id};
-          $.post("/file_assets/"+asset_id, data);  
-        } 
+          $.post("/file_assets/"+asset_id, data);
+        }
         if (asset_type == "Url"){
           var asset_id = $("#fancybox-content .asset_submit_button").data("asset-id");
           var content_id = $("#fancybox-content .asset_submit_button").data("content-id");
           var data = {asset: {name: $("#fancybox-content #asset_name").val()}, url: {url: $("#fancybox-content #url_url").val()}};
-          $.post("/urls/"+asset_id, data);         
+          $.post("/urls/"+asset_id, data);
         }
         reload_tray();
-        $.fancybox.hideActivity();     
+        $.fancybox.hideActivity();
       });
       $("form.edit_classification input[type=submit][value=Save]").hide();
     };

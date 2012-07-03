@@ -6,7 +6,7 @@ require "fassets_core/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "fassets_core"
-  s.version     = "0.0.2"
+  s.version     = FassetsCore::VERSION
   s.authors     = ["Julian Bäume", "Christopher Sharp"]
   s.email       = ["julian@svg4all.de", "cdsharp@gmail.com"]
   s.homepage    = "https://github.com/fassets/"

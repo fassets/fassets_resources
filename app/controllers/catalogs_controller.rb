@@ -17,6 +17,7 @@ class CatalogsController < FassetsCore::ApplicationController
   def create
     @catalog = Catalog.new(params[:catalog])
     if @catalog.save
+      create_type_facet()
       flash[:notice] = "Catalog was successfully created."
       redirect_to catalogs_path
     else
@@ -86,6 +87,11 @@ class CatalogsController < FassetsCore::ApplicationController
     render :partial => "box_facet", :collection => @catalog.facets, :as => :facet
   end
   protected
+  def create_type_facet
+    facet = Facet.new(:caption => "Content Type", :color => "orange", :label_order => "value ASC, caption ASC")
+    facet.catalog_id = @catalog.id
+    facet.save
+  end
   def find_catalog
     @catalog = Catalog.find(params[:id])
   end

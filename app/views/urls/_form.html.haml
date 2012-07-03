@@ -1,4 +1,11 @@
-%p
-  %label{:for => 'url'} URL:
-  =form.text_area :url, :rows => 3
-  #url_warning
+-if new
+  =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
+    %p
+      %label{:for => 'url'} URL:
+      =text_field :url, :url, :value => @content.url
+      #url_warning
+-else
+  %p
+    %label{:for => 'url'} URL:
+    =text_field :url, :url, :value => @content.url
+    #url_warning

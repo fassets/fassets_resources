@@ -4,4 +4,4 @@
     =form_for [current_user, tp], :url => main_app.user_tray_positions_path(current_user,tp), :html => {:class => "inline"} do |f|
       =f.hidden_field :asset_id
       =f.hidden_field :user_id
-      =submit_tag "-> Tray"
+      =submit_tag "-> Tray", :class => "put_on_tray_button", :data => { :asset_id => @content.asset.id, :user_id => current_user.id }

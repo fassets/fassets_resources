@@ -1,6 +1,13 @@
 require "acts_as_asset"
+require 'carrierwave/processing/mime_types'
 
 class FileAsset < ActiveRecord::Base
+  attr_accessible :file, :remote_file_url, :content_type, :author, :source, :license
+  include Rails.application.routes.url_helpers
+  #validates_presence_of :file
+  mount_uploader :file, FileUploader
+  before_create :save_content_type
+  
   MIME_2_MEDIA = {
     'image/jpeg' => 'image',
     'image/png' => 'image',
@@ -8,25 +15,36 @@ class FileAsset < ActiveRecord::Base
     'image/tiff' => 'image',
     'image/svg+xml' => 'image',
     'video/flv' => 'video',
-    'video/x-flv' => 'video'
+    'video/x-flv' => 'video',
+    'video/x-msvideo' => 'video',
+    'video/mpeg' => 'video'
   }
 
-  validates_attachment_presence :file
-
+  def save_content_type
+    self.content_type = file.file.content_type
+  end
+  
+  def to_jq_upload
+    {
+      "name" => read_attribute(:file),
+      "size" => file.size,
+      "url" => file.url,
+      "thumbnail_url" => file.thumb.url,
+      "edit_box_url" => "/edit_box/"+id.to_s,
+      "delete_url" => file_asset_path(:id => id),
+      "delete_type" => "DELETE",
+      "content_type" => "FileAsset" 
+    }
+  end
   acts_as_asset
-  has_attached_file :file,
-    :url => "/uploads/:id/:style.:extension",
-    #:url => "/files/:id/:style.:extension",
-    :path => ":rails_root/public/uploads/:id/:style.:extension",
-    :styles => {
-    :thumb => "72x72#",
-    :small => "400x300>"
-  }
-  before_post_process :image?
 
   def media_type
-    MIME_2_MEDIA[file_content_type] || 'file'
-  end    
+    if self.content_type
+      MIME_2_MEDIA[self.content_type] || 'file'
+    else
+      'file'
+    end
+  end  
   def file_updated_at
     Time.now
   end
@@ -35,6 +53,18 @@ class FileAsset < ActiveRecord::Base
   end
   def image?
     !(file_content_type =~ /^image.*/).nil?
+  end
+  def image_width_preview
+    image ||= MiniMagick::Image.open(file.medium.path)['width']
+  end
+  def image_height_preview
+    image ||= MiniMagick::Image.open(file.medium.path)['height']
+  end
+  def image_width
+    image ||= MiniMagick::Image.open(file.path)['width']
+  end
+  def image_height
+    image ||= MiniMagick::Image.open(file.path)['height']
   end
 end
 

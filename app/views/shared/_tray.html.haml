@@ -1,8 +1,13 @@
--if user_signed_in?
-
-  #tray
-    %ul#create_links
-      %li=select_tag([["test", 1]])
-      %li
-    %ol
-      =render :partial => "shared/tray_position", :collection => current_user.tray_positions
+- if user_signed_in?
+  =form_tag main_app.replace_user_tray_positions_path(current_user),
+    :data => { :user_id => current_user.id },
+    :id => "tray",
+    :method => :put do
+    %ol.sortable{:id => "users.#{current_user.id}.tray_positions.replace", :class => "sortable_tray"}
+      -current_user.tray_positions.each do |tp|
+        -if tp.clipboard_type
+          =render :partial => "shared/clipboard", :locals => {:tp => tp}
+        -else
+          =render :partial => "shared/asset", :locals => {:tp => tp, :asset => tp.asset}
+      %ul#create_links
+        %li=button_tag "New Assets", :id => "new_asset_link"

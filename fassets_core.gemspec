@@ -6,7 +6,7 @@ require "fassets_core/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "fassets_core"
-  s.version     = FassetsCore::VERSION
+  s.version     = "0.0.2"
   s.authors     = ["Julian Bäume", "Christopher Sharp"]
   s.email       = ["julian@svg4all.de", "cdsharp@gmail.com"]
   s.homepage    = "https://github.com/fassets/"
@@ -20,8 +20,12 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "haml"
   s.add_dependency "sqlite3"
-  s.add_dependency "paperclip"
+  s.add_dependency "mime-types"
+  s.add_dependency "carrierwave"
+  s.add_dependency "mini_magick"
+  s.add_dependency "streamio-ffmpeg"
   s.add_dependency "fancybox-rails"
+  s.add_dependency "wikipedia-client"
 
   s.add_development_dependency "devise"
 end

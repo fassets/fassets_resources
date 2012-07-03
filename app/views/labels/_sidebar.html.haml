@@ -14,5 +14,9 @@
           =form_for [@catalog, @facet, label], :url => catalog_facet_label_path(@catalog, @facet, label) do |f|
             =render :partial => "labels/form", :object => f
             =submit_tag "Save"
-          =button_to "Drop", catalog_facet_label_path(@catalog, @facet, label), :confirm => 'Are you sure?', :method => "delete", :remote => true, :disable_with => 'loading...'
+          =button_to "Drop", catalog_facet_label_path(@catalog, @facet, label),
+            :confirm => 'Are you sure?',
+            :method => "delete",
+            :remote => true,
+            :disable_with => 'loading...'
 

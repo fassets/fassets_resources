@@ -2,19 +2,24 @@ class TrayPositionsController < FassetsCore::ApplicationController
   before_filter :authenticate_user!
   def create
     if current_user.tray_positions.maximum(:position)
-      params[:fassets_core_tray_position][:position] = current_user.tray_positions.maximum(:position)+1
+      params[:tray_position][:position] = current_user.tray_positions.maximum(:position)+1
     else
-      params[:fassets_core_tray_position][:position] = 1
+      params[:tray_position][:position] = 1
     end
-    tp = TrayPosition.new(params[:fassets_core_tray_position])
+    tp = TrayPosition.new(params[:tray_position])
     tp.clipboard_type.capitalize! if tp.clipboard_type
     tp.save
-    redirect_to :back
+    render :nothing => true
+    #redirect_to :back
+  end
+  def index
+    render :partial => "shared/tray"
   end
   def destroy
     tp = TrayPosition.find(params[:id])
     tp.destroy()
-    redirect_to :back
+    render :nothing => true
+    #redirect_to :back
   end
   def replace
     respond_to do |format|
@@ -68,7 +73,7 @@ class TrayPositionsController < FassetsCore::ApplicationController
         end
       end
       format.html do
-        redirect_to :back
+        #redirect_to :back
       end
     end
   end

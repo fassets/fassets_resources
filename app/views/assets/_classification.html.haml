@@ -1,32 +1,33 @@
-.collapsible
-  %h2.title New Classification
+.classification_form
   =form_for Classification.new(:asset_id => @content.asset.id), :url => main_app.classifications_path do |f|
     %p
-      %label{:for => 'catalog_id'} Catalog:
+      %label{:for => 'catalog_id'} New:
       =select("classification", "catalog_id", Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
-    =hidden_field "classification", :asset_id
-    =submit_tag "Create"
+    =hidden_field_tag "classification[asset_id]", @content.asset.id.to_s
+    =submit_tag "Create", :class => "classification_create"
 
 
-.collapsible
-  %h2.title Classifications
+.classification_sidebar
+  .title Classifications
   %ul.collection
     -catalogs = []
     -@content.asset.classifications.each do |classification|
       -catalogs << classification.catalog_id
-      %li
-        =link_to classification.catalog.title, main_app.catalog_path(classification.catalog)
+      %li.classification
         .content
-          =form_for classification, :remote => true do |f|
-            -classification.catalog.facets.each do |facet|
-              .facet{:class => "#{facet.color}_lite"}
-                .caption{:class => facet.color}
-                  =facet.caption
-                %ul
-                  -facet.labels.each do |label|
-                    %li.label
-                      =check_box_tag "labels[]", label.id, classification.label_ids.include?(label.id)
-                      =link_to label.caption
-            =submit_tag "Save"
-            =submit_tag "Drop", :style => "float: left", :onclick => "return confirm('Are you sure?')"
+          =form_for classification, :remote => true , :url => main_app.classification_path(classification) do |f|
+            .classification_header
+              =link_to classification.catalog.title, main_app.catalog_path(classification.catalog), :class => "classification_title"
+              =submit_tag "Drop", :class => "classification_drop", :classification_id => classification.id
+            .classification_facets
+              -classification.catalog.facets.each do |facet|
+                .facet{:class => "#{facet.color}_lite"}
+                  .caption{:class => facet.color}
+                    =facet.caption
+                  %ul
+                    -facet.labels.each do |label|
+                      %li.label
+                        =check_box_tag "labels[]", label.id, classification.label_ids.include?(label.id)
+                        =link_to label.caption
+                  =submit_tag "Save"
 

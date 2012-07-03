@@ -26,6 +26,9 @@ a.icon.file {
 .action {
 	font-size: 10pt;
 }
+.action input{
+	float: left;
+}
 .center {
 	text-align: center;
 }
@@ -113,4 +116,12 @@ span.color {
 #url_warning {
   color: red;
   font-weight: bold;
+}
+.asset_form {
+  float: left;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+#asset_preview {
+  float: left;
 }

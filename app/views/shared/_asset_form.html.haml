@@ -1,4 +1,4 @@
-=form_for model, :html => options do |f|  
+=form_for model, :html => options do |f|
   =fields_for "#{model.class.to_s.underscore}", asset do |asset|
     %p
       %label{:for => 'name'} Name:

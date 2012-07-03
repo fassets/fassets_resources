@@ -19,7 +19,7 @@ $(function(){
     startCollapsed: true
   });
 
-  $(".label > input[type=checkbox]").click(function() {
+  $(".label > input[type=checkbox]").live("click",function() {
     $(this).parents("form").submit();
   });
   // hide the submit button if JS is enabled (form can be submited by checking the boxes)

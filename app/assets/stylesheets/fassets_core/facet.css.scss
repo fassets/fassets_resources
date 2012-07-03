@@ -1,7 +1,11 @@
 #sidebar .facet{
   margin-bottom: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   -webkit-border-radius: 5px;
   -webkit-border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 
   ul {
     padding: .3em;
@@ -24,6 +28,8 @@
   .caption {
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     color: white;
     padding: .2em .5em;
     font-weight: bold;

@@ -1,13 +1,13 @@
 li.asset {
   position: relative;
   display: inline-block;
-  width: 88px;
-  height:  102px;
+  width: 100px;
+  height:  112px;
   padding: 6px;
   margin: 0 2em .5em 0;
   background: #666666;
-  border: 2px solid #555555;
   border-radius: 5px;
+  border: 2px solid black;
 
   .asset_content {
     width: 80px;
@@ -18,7 +18,8 @@ li.asset {
       position: relative;
       width: 72px;
       height: 72px;
-      padding-left: 8px;
+      padding-top: 4px;
+      padding-left: 12px;
       padding-right: 8px;
       padding-bottom: 8px;
 
@@ -37,6 +38,7 @@ li.asset {
       border-radius: 5px;
       border: 1px solid black;
       text-align: center;
+      margin-left: 4px;
       margin-top: 4px;
       margin-bottom: 2px;
       overflow: hidden;
@@ -51,17 +53,17 @@ li.asset {
   }
 
   .asset_actions {
-    width: 48px;
+    width: 55px;
     height: 65px;
     position: absolute;
-    left: 100px;
-    top: 12px;
+    left: 112px;
+    top: 19px;
     display: none;
     z-index: 10;
     background: #666666;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    border: 2px solid #555555;
+    border: 2px solid black;
     border-left-style: none;
     padding: 3px;
 

@@ -16,5 +16,11 @@ class Url < ActiveRecord::Base
   def regexp
     URL_2_MEDIA.each{|p| break p.first if self.url =~ p.first }
   end
+  def to_jq_upload
+    {
+      "edit_box_url" => "/edit_box/"+id.to_s,
+      "content_type" => "Url" 
+    }
+  end
 end
 

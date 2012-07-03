@@ -1,6 +1,7 @@
 /*
- *= require fassets_core/catalog_box
  *= require fancybox
+ *= require fassets_core/catalog_box
+ *= require fassets_core/add_asset_box
  *= require_self
  *= require fassets_core/master
  *= require fassets_core/assets
@@ -11,4 +12,5 @@
  *= require fassets_core/sidebar
  *= require fassets_core/filter
  *= require fassets_core/facet
+ *= require fassets_core/edit_box
 */

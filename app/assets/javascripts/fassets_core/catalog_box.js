@@ -15,10 +15,11 @@ $(document).ready(function(){
           padding: 0,
           autoDimensions: false,
           width: f_width,
-          height: f_height
+          height: f_height,
+          onComplete: function(){$("#fancybox-content").attr("box_type","catalog");}
         });
         $("#box_content").css("left",$("#catalog_list").width()+10);
-        $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#facets").width());
+        $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#fancybox-content #sidebar").width());
         fancybox_links();
         $.fancybox.resize();
 		  }
@@ -30,6 +31,7 @@ $(document).ready(function(){
       activeObj = document.activeElement;
       if (activeObj.type == "textarea") break;
       if (activeObj.type == "text") break;
+      if ($(activeObj).attr("class") != undefined && $(activeObj).attr("class").indexOf("slot") != -1) break;
       if ($("#fancybox-wrap").is(":visible")) {
         $.fancybox.close();
       } else {
@@ -45,7 +47,9 @@ $(document).ready(function(){
         var catalog = $("#fancybox-content #selected").attr("catalog_id");
         var filter = event.target.href.split("?")[1];
         $("#fancybox-content #facets").load("/box_facet?id="+catalog+"&"+filter);
-        $("#fancybox-content #box_content").load("/box_content?id="+catalog+"&"+filter);
+        $("#fancybox-content #box_content").load("/box_content?id="+catalog+"&"+filter, function(){
+          $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#fancybox-content #sidebar").width());
+        });
         $.fancybox.resize();
         $.fancybox.hideActivity();
       });
@@ -53,13 +57,17 @@ $(document).ready(function(){
         event.preventDefault();
         $.fancybox.showActivity();
         var catalog = event.target.href.split("=")[1];
-        $("#fancybox-content").load("/catalog_box?id="+catalog);
+        $("#fancybox-content").load("/catalog_box?id="+catalog, function(){
+          $("#box_content").css("width",$("#fancybox-content").width()-$("#catalog_list").width()-30-$("#fancybox-content #sidebar").width());
+        });
         $.fancybox.resize();;
         $.fancybox.hideActivity();
       });
     };
-  $(document).ajaxStop(function() { 
-    fancybox_links();
-    $.fancybox.resize();
+  $(document).ajaxStop(function() {
+    if($("#fancybox-content").attr("box_type") == "catalog"){ 
+      fancybox_links();
+      $.fancybox.resize();
+    }
   });
 });

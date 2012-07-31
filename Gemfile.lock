@@ -1,7 +1,23 @@
 PATH
   remote: .
   specs:
-    fassets_core (0.0.2)
+    fassets_resources (0.1.0)
+      carrierwave
+      fancybox-rails
+      fassets_core (>= 0.1.0)
+      haml
+      jquery-rails
+      mime-types
+      mini_magick
+      rails (~> 3.1.1)
+      sqlite3
+      streamio-ffmpeg
+      wikipedia-client
+
+PATH
+  remote: ../fassets_core
+  specs:
+    fassets_core (0.1.0)
       carrierwave
       fancybox-rails
       haml
@@ -123,5 +139,6 @@ PLATFORMS
 DEPENDENCIES
   devise
   fassets_core!
+  fassets_resources!
   haml
   jquery-rails

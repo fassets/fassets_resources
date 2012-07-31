@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem "fassets_core", :path => '../fassets_core' #:git => "git://github.com/fassets/fassets_core.git"
 # Declare your gem's dependencies in fassets_core.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.

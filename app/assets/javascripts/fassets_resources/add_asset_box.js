@@ -47,14 +47,6 @@ $(document).ready(function(){
     }
    });
     var adjust_links = function(){
-      $("#fancybox-content li.asset_type").click(function(event){
-        event.preventDefault();
-        $.fancybox.showActivity();
-        var type = event.target.href.split("=")[1];
-        $("#fancybox-content").load("/add_asset_box?type="+type);
-        $.fancybox.resize();
-        $.fancybox.hideActivity();
-      });
       $("#fancybox-content .wiki_submit").click(function(event){
         event.preventDefault();
         $.fancybox.showActivity();
@@ -79,17 +71,6 @@ $(document).ready(function(){
         $.fancybox.showActivity();
         $.post("/file_assets/", $(event.target).parent().serialize(), function(data){
           $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type, function(){adjust_links();});
-        });
-        reload_tray();
-        $.fancybox.resize();;
-        $.fancybox.hideActivity();
-      });
-      $("#fancybox-content .asset_create_button").click(function(event){
-        event.preventDefault();
-        $.fancybox.showActivity();
-        var action = $("#add_asset_content form").attr("action");
-        $.post(action, $("#add_asset_content form").serialize(), function(data){
-          $("#fancybox-content #add_asset_content").load(data[0].edit_box_url+"?type="+data[0].content_type);
         });
         reload_tray();
         $.fancybox.resize();;
@@ -120,34 +101,5 @@ $(document).ready(function(){
         reload_tray();
         $.fancybox.hideActivity();
       });
-      $("form.edit_classification input[type=submit][value=Save]").hide();
     };
-  $(document).ajaxStop(function() {
-    if($("#fancybox-content").data("box-type") == "add_asset"){
-      adjust_links();
-      $.fancybox.resize();
-    }
-  });
-  $("#new_asset_link").click(function(event){
-    event.preventDefault();
-    show_asset_box();
-  });
-  var reload_tray = function() {
-    var user_id = $("#tray").data("user-id");
-    $("#tray").load("/users/"+user_id+"/tray_positions/", function() {
-      $('#tray .drop_button').click(function(event){
-        event.preventDefault();
-        var user_id = $(event.target).data("user-id");
-        var tp_id = $(event.target).data("tp-id");
-        $.ajax({
-          type: 'DELETE',
-          cache	: false,
-          url		: "/users/"+user_id+"/tray_positions/"+tp_id,
-          success: function(data) {
-            $("#tray").load("/users/"+user_id+"/tray_positions/");
-          }
-        });
-      });
-    });
-  };
 });

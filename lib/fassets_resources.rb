@@ -1,4 +1,4 @@
-require "fassets_core/engine"
+require "fassets_resources/engine"
 
-module FassetsCore
+module FassetsResources
 end

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.join(FassetsCore::Engine.root, "lib", "carrierwave", "ffmpeg")
+require File.join(FassetsResources::Engine.root, "lib", "carrierwave", "ffmpeg")
 
 class FileUploader < CarrierWave::Uploader::Base
 

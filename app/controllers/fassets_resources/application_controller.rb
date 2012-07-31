@@ -1,5 +1,5 @@
-module FassetsCore
-  class ApplicationController < ActionController::Base
+module FassetsResources
+  class ApplicationController < FassetsCore::ApplicationController
   end
 end
 

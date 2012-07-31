@@ -1,3 +1,3 @@
-module FassetsCore
-  VERSION = "0.0.2"
+module FassetsResources
+  VERSION = "0.1.0"
 end

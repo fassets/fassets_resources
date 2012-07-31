@@ -1,4 +1,4 @@
-module FileAssetsHelper
+module FassetsResources::FileAssetsHelper
 
   def video_player(content)
     javascript_tag %Q<

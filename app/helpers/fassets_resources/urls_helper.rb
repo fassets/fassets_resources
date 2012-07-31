@@ -1,0 +1,3 @@
+module FassetsResources::UrlsHelper
+end
+

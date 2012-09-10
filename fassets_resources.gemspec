@@ -29,4 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "wikipedia-client"
 
   s.add_development_dependency "devise"
+  s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "guard-spork"
+  s.add_development_dependency "rspec-rails"
 end

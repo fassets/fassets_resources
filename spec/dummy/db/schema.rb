@@ -11,7 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910152612) do
+ActiveRecord::Schema.define(:version => 20120910153324) do
+
+  create_table "assets", :force => true do |t|
+    t.string   "name"
+    t.boolean  "public"
+    t.integer  "content_id"
+    t.string   "content_type"
+    t.integer  "user_id"
+    t.integer  "classifications_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs", :force => true do |t|
+    t.string "title"
+    t.string "permalink"
+    t.text   "info"
+  end
+
+  create_table "classifications", :force => true do |t|
+    t.integer "catalog_id"
+    t.integer "asset_id"
+  end
+
+  create_table "facets", :force => true do |t|
+    t.string  "caption"
+    t.string  "color"
+    t.string  "order"
+    t.integer "catalog_id"
+    t.string  "label_order"
+    t.integer "position"
+  end
 
   create_table "fassets_resources_file_assets", :force => true do |t|
     t.string   "file"
@@ -28,6 +59,18 @@ ActiveRecord::Schema.define(:version => 20120910152612) do
     t.string "url"
   end
 
+  create_table "labelings", :force => true do |t|
+    t.integer "classification_id"
+    t.integer "label_id"
+  end
+
+  create_table "labels", :force => true do |t|
+    t.string  "caption"
+    t.integer "facet_id"
+    t.integer "position"
+    t.integer "value"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -37,6 +80,14 @@ ActiveRecord::Schema.define(:version => 20120910152612) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "tray_positions", :force => true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.integer "asset_id"
+    t.string  "clipboard_type"
+    t.integer "clipboard_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

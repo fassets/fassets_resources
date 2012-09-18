@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   mount FassetsResources::Engine => "/resources"
 
-  root :to => "FassetsCore::Catalogs#index"
+  root :to => "Catalogs#index"
 end

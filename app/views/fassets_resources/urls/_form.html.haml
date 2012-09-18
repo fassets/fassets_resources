@@ -1,11 +1,5 @@
--if new
-  =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
-    %p
-      %label{:for => 'url'} URL:
-      =text_field :url, :url, :value => @content.url
-      #url_warning
--else
+=fields_for "fassets_resources_url" do |a|
   %p
-    %label{:for => 'url'} URL:
-    =text_field :url, :url, :value => @content.url
+    =a.label :url, "URL:"
+    =a.text_field :url, :value => @content.url
     #url_warning

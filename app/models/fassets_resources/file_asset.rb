@@ -4,15 +4,15 @@ require 'carrierwave/processing/mime_types'
 module FassetsResources
   class FileAsset < ActiveRecord::Base
     attr_accessible :file, :remote_file_url, :content_type, :author, :source, :license
-    include Rails.application.routes.url_helpers
-    #validates_presence_of :file
+    include FassetsResources::Engine.routes.url_helpers
+    validates_presence_of :file
     mount_uploader :file, FileUploader
-    before_create :save_content_type
+    before_save :update_file_attributes
 
     MIME_2_MEDIA = {
       'image/jpeg' => 'image',
       'image/png' => 'image',
-      'image/gif' => 'image',   
+      'image/gif' => 'image',
       'image/tiff' => 'image',
       'image/svg+xml' => 'image',
       'video/flv' => 'video',
@@ -21,8 +21,11 @@ module FassetsResources
       'video/mpeg' => 'video'
     }
 
-    def save_content_type
-      self.content_type = file.file.content_type
+    def update_file_attributes
+      if file.present? && file_changed?
+        self.content_type = file.file.content_type
+        self.file_size = file.file.size
+      end
     end
 
     def to_jq_upload
@@ -34,7 +37,7 @@ module FassetsResources
         "edit_box_url" => "/edit_box/"+id.to_s,
         "delete_url" => file_asset_path(:id => id),
         "delete_type" => "DELETE",
-        "content_type" => "FileAsset" 
+        "content_type" => "FassetsResources::FileAsset"
       }
     end
     acts_as_asset
@@ -45,7 +48,7 @@ module FassetsResources
       else
         'file'
       end
-    end  
+    end
     def file_updated_at
       Time.now
     end

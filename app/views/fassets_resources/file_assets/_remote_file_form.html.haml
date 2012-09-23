@@ -5,12 +5,8 @@
     New
 
 #main.fassets_core
-  =form_for @content, :url => asset_content_path(@content),:html => {:multipart => true} do |f|
-    =render :partial => "shared/error", :locals => {:target => @content}
+  =fields_for "fassets_resources_file_asset" do |a|
     %p
-      %label{:for => 'catalog_id'} Catalog:
-      =select("classification", "catalog_id", Catalog.all.inject([]){|m,c| m << [c.title, c.id]})
-    %p
-      %label{:for => 'remote_url'} Remote File Url:
-      =text_field :file_asset, :remote_file_url
+      =a.label :remote_url, "Remote File Url:"
+      =a.text_field :remote_file_url
     =submit_tag "Add", :class => "add_remote_file"

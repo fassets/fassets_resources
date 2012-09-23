@@ -1,13 +1,15 @@
-#file_asset_form
-  = render :partial => FassetsResources::FileAssetsHelper::partial_for_type(@selected_type)
+- if controller.action_name == "new"
+  #file_asset_form
+    = render :partial => FassetsResources::FileAssetsHelper::partial_for_type(@selected_type)
 
-#edit_asset_content
-  %div
-    %label{:for => 'author'} Author:
-    =text_field :file_asset, :author, :value => @content.author
-  %div
-    %label{:for => 'source'} Source:
-    =select :file_asset, :source, options_for_select(["YouTube","Flickr","Wikipedia","Other"], @content.source), {:include_blank => true}
-  %div
-    %label{:for => 'license'} License:
-    =text_field :file_asset, :license, :value => @content.license
+- if controller.action_name == "edit"
+  #edit_asset_content
+    %div
+      %label{:for => 'author'} Author:
+      =text_field :file_asset, :author, :value => @content.author
+    %div
+      %label{:for => 'source'} Source:
+      =select :file_asset, :source, options_for_select(["YouTube","Flickr","Wikipedia","Other"], @content.source), {:include_blank => true}
+    %div
+      %label{:for => 'license'} License:
+      =text_field :file_asset, :license, :value => @content.license

@@ -4,7 +4,7 @@ PATH
     fassets_resources (0.1.0)
       carrierwave
       fancybox-rails
-      fassets_core (>= 0.1.0)
+      fassets_core (>= 0.2.0)
       haml
       jquery-rails
       mime-types
@@ -13,17 +13,6 @@ PATH
       sqlite3
       streamio-ffmpeg
       wikipedia-client
-
-PATH
-  remote: ../fassets_core
-  specs:
-    fassets_core (0.1.0)
-      fancybox-rails
-      haml
-      jquery-rails
-      mime-types
-      rails (~> 3.1.1)
-      sqlite3
 
 GEM
   remote: http://rubygems.org/
@@ -71,6 +60,13 @@ GEM
     erubis (2.7.0)
     fancybox-rails (0.1.4)
       railties (>= 3.1.0)
+    fassets_core (0.2.0)
+      fancybox-rails
+      haml
+      jquery-rails
+      mime-types
+      rails (~> 3.1.1)
+      sqlite3
     ffi (1.1.5)
     guard (1.3.2)
       listen (>= 0.4.2)
@@ -166,7 +162,6 @@ PLATFORMS
 
 DEPENDENCIES
   devise
-  fassets_core!
   fassets_resources!
   guard-rspec
   guard-spork

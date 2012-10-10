@@ -5,9 +5,8 @@ module FassetsResources
     validates_presence_of :url
     validates_format_of :url, :with => /^(#{URI::regexp(%w(http https))})$/, :message => "is invalid"
     URL_2_MEDIA = [
-      [/http:\/\/xmendel\.imis\.uni-luebeck\.de.*/, "XMendeL"],
-      [/http:\/\/(www\.)?youtube\.com\/watch\?.*v=(\w*)(\&.*)*/, "Youtube"],
-      [/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,"URL"]
+      [/http:\/\/(www\.)?youtube\.com\/watch\?.*v=(\w*)(\&.*)*/, "youtube"],
+      [/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,"url"]
     ]
     acts_as_asset
 
@@ -20,7 +19,7 @@ module FassetsResources
     def to_jq_upload
       {
         "edit_box_url" => "/edit_box/"+id.to_s,
-        "content_type" => "Url" 
+        "content_type" => "Url"
       }
     end
   end

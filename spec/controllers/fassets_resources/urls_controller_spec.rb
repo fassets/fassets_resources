@@ -22,7 +22,7 @@ module FassetsResources
         it "should flash out an error" do
           get 'show', :id => asset.id, :use_route => :fassets_resources
           response.should redirect_to(root_path)
-          request.flash[:error].should =~ /not found$/
+          request.flash[:error].should =~ /^Couldn't find FassetsResources::Url/
         end
       end
 

@@ -69,6 +69,12 @@ module FassetsResources
         assigns(:image_urls).should_not be_nil
         assigns(:image_urls).should be_empty
       end
+
+      it "should not fail with empty search string" do
+        # find with empty string will raise a type error
+        Wikipedia.should_not_receive(:find).with("")
+        get 'wikipedia_images', :use_route => :fassets_resources, :search_key => ""
+      end
     end
   end
 end

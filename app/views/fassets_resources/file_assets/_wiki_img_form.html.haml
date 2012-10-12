@@ -4,11 +4,10 @@
   #name
     New
 
-#main.fassets_core
-  =form_for @content, :url => "/search_wiki_imgs",:html => {:multipart => true} do |f|
-    =render :partial => "shared/error", :locals => {:target => @content}
-    %p
-      %label{:for => 'search_key'} Search for Images from:
-      =text_field :file_asset, :search_key
-    =submit_tag "Search", :class => "wiki_submit"
-
+#search_wiki_images
+  =render :partial => "shared/error", :locals => {:target => @content}
+  %p
+    %label{:for => 'search_key'} Search for Images from:
+    =text_field :file_asset, :search_key
+  =submit_tag "Search", :class => "wiki_submit", :data => {:wiki_qry_path => fassets_resources.wikipedia_search_path}
+  #wiki_search_result

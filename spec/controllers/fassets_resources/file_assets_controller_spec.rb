@@ -46,5 +46,17 @@ module FassetsResources
         response.should render_template("assets/show")
       end
     end
+
+    context "GET wikipedia_images" do
+      it "should get a list of images" do
+        page = double("Wikipedia::Page")
+        page.should_receive(:image_urls) {['http://test.host/test1.png','http://test.host/test2.png']}
+        Wikipedia.should_receive(:find).with("test search") { page }
+        get 'wikipedia_images', :use_route => :fassets_resources, :search_key => "test search"
+        response.should be_success
+        response.should render_template "wikipedia_images"
+        response.should_not render_template "layouts/fassets_core/application"
+      end
+    end
   end
 end

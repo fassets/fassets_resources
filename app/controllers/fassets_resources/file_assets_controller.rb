@@ -3,6 +3,7 @@ require 'wikipedia'
 module FassetsResources
   class FileAssetsController < AssetsController
     skip_before_filter :authenticate_user!, :only => [:thumb, :preview, :original]
+    skip_before_filter :find_content, :only => [:wikipedia_images]
 
     def thumb
       redirect_to "/public/uploads/#{@content.id}/thumb.#{params[:format]}"
@@ -20,11 +21,7 @@ module FassetsResources
     def content_model
       return FileAsset
     end
-    def new_remote_file
-      @content = FileAsset.new
-      render :template => 'file_assets/new_remote_file'
-    end
-    def search_wiki_imgs
+    def wikipedia_images
       @content = FileAsset.new
       Wikipedia.Configure {
         domain 'en.wikipedia.org'
@@ -33,11 +30,7 @@ module FassetsResources
       }
       page = Wikipedia.find(params[:search_key])
       image_urls = page.image_urls
-      render :partial => 'file_assets/search_wiki_imgs', :locals => {:search_key => params[:search_key], :image_urls => image_urls}
-    end
-    def get_wiki_imgs
-      @content = FileAsset.new
-      render :template => "file_assets/new_wiki_img"
+      render :partial => 'wikipedia_images', :locals => {:search_key => params[:search_key], :image_urls => image_urls}
     end
   end
 end

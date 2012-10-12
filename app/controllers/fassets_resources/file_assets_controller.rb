@@ -29,8 +29,8 @@ module FassetsResources
         path   'w/api.php'
       }
       page = Wikipedia.find(params[:search_key])
-      image_urls = page.image_urls
-      render :partial => 'wikipedia_images', :locals => {:search_key => params[:search_key], :image_urls => image_urls}
+      @image_urls = page.image_urls || []
+      render :partial => 'wikipedia_images', :locals => {:search_key => params[:search_key], :image_urls => @image_urls}
     end
   end
 end

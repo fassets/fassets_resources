@@ -50,12 +50,24 @@ module FassetsResources
     context "GET wikipedia_images" do
       it "should get a list of images" do
         page = double("Wikipedia::Page")
-        page.should_receive(:image_urls) {['http://test.host/test1.png','http://test.host/test2.png']}
+        test_urls = ['http://test.host/test1.png','http://test.host/test2.png']
+        page.should_receive(:image_urls) { test_urls }
         Wikipedia.should_receive(:find).with("test search") { page }
         get 'wikipedia_images', :use_route => :fassets_resources, :search_key => "test search"
         response.should be_success
         response.should render_template "wikipedia_images"
         response.should_not render_template "layouts/fassets_core/application"
+        assigns(:image_urls).should == test_urls
+      end
+
+      it "should not assign nil as image list" do
+        page = double("Wikipedia::Page")
+        # image_urls returns nil if no images are found
+        page.should_receive(:image_urls) { nil }
+        Wikipedia.should_receive(:find).with("test search") { page }
+        get 'wikipedia_images', :use_route => :fassets_resources, :search_key => "test search"
+        assigns(:image_urls).should_not be_nil
+        assigns(:image_urls).should be_empty
       end
     end
   end

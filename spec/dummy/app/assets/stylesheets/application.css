@@ -5,4 +5,5 @@
  *= require_self
  *= require_tree .
  *= require fassets_core
+ *= require fassets_resources
 */

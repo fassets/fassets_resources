@@ -1,18 +1,5 @@
-#fileupload
-  =form_for :file_asset, :html => { :multipart => true } do |f|
-    .fileupload-buttonbar
-      %label.fileinput-button
-      %span
-        Add files...
-        =f.file_field :file
-      %br
-      %button{:type=>"submit",:class=>"start"}Start upload
-      %button{:type=>"reset",:class=>"cancel"}Cancel upload
-      %button{:type=>"button",:class=>"delete"}Delete files
-    .fileupload-content
-      %table{:class=>"files"}
-      .fileupload-progressbar
+-local_file_form.multipart = true # set multipart for the form builder to true to allow file uploads
 
-      =render :partial => "fassets_resources/file_assets/template-upload"
-      =render :partial => "fassets_resources/file_assets/template-download"
-      =render :partial => "fassets_resources/file_assets/fileupload_widget"
+=fields_for :fassets_resources_file_asset do |f|
+  =f.label :file
+  =f.file_field :file

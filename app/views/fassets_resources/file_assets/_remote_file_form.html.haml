@@ -1,12 +1,3 @@
--content_for :h1 do
-  #type
-    =@content.class.to_s
-  #name
-    New
-
-#main.fassets_core
-  =fields_for "fassets_resources_file_asset" do |a|
-    %p
-      =a.label :remote_url, "Remote File Url:"
-      =a.text_field :remote_file_url
-    =submit_tag "Add", :class => "add_remote_file"
+=fields_for "fassets_resources_file_asset" do |a|
+  =a.label :remote_url, "Remote File Url:"
+  =a.text_field :remote_file_url

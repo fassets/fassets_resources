@@ -1,6 +1,6 @@
 - if controller.action_name == "new"
-  #file_asset_form
-    = render :partial => FassetsResources::FileAssetsHelper::partial_for_type(@selected_type)
+  %p#file_asset_form
+    = render :partial => FassetsResources::FileAssetsHelper::partial_for_type(@selected_type), :object => form
 
 - if controller.action_name == "edit"
   #edit_asset_content

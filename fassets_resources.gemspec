@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.1"
-  s.add_dependency "fassets_core", "~> 0.3.1"
+  s.add_dependency "fassets_core", "~> 0.4.0"
   s.add_dependency "jquery-rails"
   s.add_dependency "haml"
   s.add_dependency "sqlite3"

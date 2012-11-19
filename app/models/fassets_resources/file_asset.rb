@@ -18,7 +18,8 @@ module FassetsResources
       'video/flv' => 'video',
       'video/x-flv' => 'video',
       'video/x-msvideo' => 'video',
-      'video/mpeg' => 'video'
+      'video/mpeg' => 'video',
+			'application/pdf' => 'text'
     }
 
     def update_file_attributes

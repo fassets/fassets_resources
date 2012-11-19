@@ -46,7 +46,7 @@ class FileUploader < CarrierWave::Uploader::Base
   version :flv, :if => :video? do
     process :convert_to_flv
   end
-  
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
@@ -60,7 +60,7 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
   
   def extension_white_list
-    %w(jpg jpeg gif png svg avi flv mpg mpeg)
+    %w(jpg jpeg gif png svg avi flv mpg mpeg pdf)
   end
 
   protected

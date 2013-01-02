@@ -5,6 +5,25 @@ module FassetsResources
     skip_before_filter :authenticate_user!, :only => [:thumb, :preview, :original]
     skip_before_filter :find_content, :only => [:wikipedia_images]
 
+
+    def create
+      super
+        if @content.content_type === "application/pdf"
+        path_org = Rails.root.to_s +  "/public" + @content.file.to_s
+        path_jpg = path_org[0..-4] + "jpg"
+        system("convert -density 300  #{path_org}[0] #{path_jpg}")
+        end
+    end
+		
+    def destroy
+      super
+      if @content.content_type === "application/pdf"
+        path_org = Rails.root.to_s +  "/public" + @content.file.to_s
+        path_jpg = path_org[0..-4] + "jpg"
+        system("rm #{path_jpg}")
+      end
+    end
+
     def thumb
       redirect_to "/public/uploads/#{@content.id}/thumb.#{params[:format]}"
     end

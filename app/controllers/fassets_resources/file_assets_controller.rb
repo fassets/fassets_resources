@@ -9,7 +9,7 @@ module FassetsResources
     def create
       super
         if @content.content_type === "application/pdf"
-        path_org = Rails.root.to_s +  "/public" + @content.file.to_s
+        path_org = File.join(Rails.root.to_s, "public", @content.file.to_s)  #Rails.root.to_s +  #"/public" + @content.file.to_s
         path_jpg = path_org[0..-4] + "jpg"
         system("convert -density 300  #{path_org}[0] #{path_jpg}")
         end
@@ -18,7 +18,7 @@ module FassetsResources
     def destroy
       super
       if @content.content_type === "application/pdf"
-        path_org = Rails.root.to_s +  "/public" + @content.file.to_s
+        path_org = File.join(Rails.root.to_s, "public", @content.file.to_s)  #Rails.root.to_s +  "/public" + @content.file.to_s
         path_jpg = path_org[0..-4] + "jpg"
         system("rm #{path_jpg}")
       end
